@@ -16,6 +16,7 @@
           <option value="only">Only Trashed</option>
         </select>
       </search-filter>
+
       <inertia-link class="btn-indigo" :href="route('users.create')">
         <span>Create</span>
         <span class="hidden md:inline">User</span>
@@ -26,10 +27,14 @@
         <tr class="text-left font-bold">
           <th class="px-6 pt-6 pb-4">Name</th>
           <th class="px-6 pt-6 pb-4">Email</th>
+          <th class="px-6 pt-6 pb-4">Mobile</th>
+
           <th class="px-6 pt-6 pb-4" colspan="2">Role</th>
         </tr>
         <tr v-for="user in users" :key="user.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
+
           <td class="border-t">
+            <!-- {{ user }} -->
             <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('users.edit', user.id)">
               <img v-if="user.photo" class="block w-5 h-5 rounded-full mr-2 -my-2" :src="user.photo" />
               {{ user.name }}
@@ -42,11 +47,21 @@
             </inertia-link>
           </td>
           <td class="border-t">
+            {{user.mobile }}
+          </td>
+          <td class="border-t">
             <inertia-link class="px-6 py-4 flex items-center" :href="route('users.edit', user.id)" tabindex="-1">
               {{ user.owner ? 'Owner' : 'User' }}
             </inertia-link>
           </td>
           <td class="border-t w-px">
+
+            <inertia-link class="px-4 flex items-center" :href="route('detail',['manager',user.id] )" tabindex="-1">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+            </inertia-link>
+
             <inertia-link class="px-4 flex items-center" :href="route('users.edit', user.id)" tabindex="-1">
               <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
             </inertia-link>

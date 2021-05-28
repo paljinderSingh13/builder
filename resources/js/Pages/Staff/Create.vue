@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1 class="mb-8 font-bold text-3xl">
-      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('users')">Users</inertia-link>
-      <span class="text-indigo-400 font-medium">/</span> Create
+      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('staff',type)">Staff</inertia-link>
+      <span class="text-indigo-400 font-medium">/</span> {{ type }}
     </h1>
     <div class="bg-white rounded-md shadow overflow-hidden max-w-full">
       <form @submit.prevent="store">
@@ -55,7 +55,8 @@ import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 
 export default {
-  metaInfo: { title: 'Create User' },
+  metaInfo: { title: 'Create ' },
+  props:{type:String},
   components: {
     FileInput,
     LoadingButton,
@@ -79,7 +80,7 @@ export default {
         employee_id:null,
         expertise:null,
         emergency_contact:null,
-        user_type:null,
+        user_type:this.type,
         date_of_joining:null
       }),
     }

@@ -7,6 +7,8 @@ use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\OrganizationsController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProjectController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Auth
+
+Route::get('test',function(){
+    dump('helloooo');
+});
 
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
     ->name('login')
@@ -40,6 +46,32 @@ Route::get('/', [DashboardController::class, 'index'])
     ->middleware('auth');
 
 // Users
+Route::group(['middleware'=>'auth'],function(){
+
+    Route::get('staff-{type}',[UsersController::class,'staff'])->name('staff');
+    Route::get('create-{type}',[UsersController::class,'staff_create'])->name('staff.create');
+
+    Route::get('staff-{type}/{user}',[UsersController::class,'detail'])->name('detail');
+
+//project
+    Route::get('projects',[ProjectController::class,'index'])->name('projects');
+    Route::get('new-project',[ProjectController::class,'create'])->name('project.create');
+    Route::post('new-project-store',[ProjectController::class,'store'])->name('project.store');
+    Route::get('project/{project}/edit',[ProjectController::class,'edit'])->name('project.edit');
+    Route::put('project/{project}',[ProjectController::class,'update'])->name('project.update');
+    Route::delete('project/{project}', [ProjectController::class, 'destroy'])->name('project.destroy');
+    Route::put('restore_project/{project}/restore', [ProjectController::class, 'restore'])->name('project.restore');
+//Manage Team
+
+Route::get('project-team/{project_id}',[ProjectController::class,'manage_team'])->name('project.team');
+Route::post('manage_team',[ProjectController::class,'sync_team'])->name('sync.team');
+
+
+
+
+
+});
+
 
 Route::get('users', [UsersController::class, 'index'])
     ->name('users')

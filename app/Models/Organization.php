@@ -23,8 +23,22 @@ class Organization extends Model
 
     public function scopeFilter($query, array $filters)
     {
+
+        // $query->where(function ($query) use ($search) {
+        //     $query->where('first_name', 'like', '%'.$search.'%')
+        //         ->orWhere('last_name', 'like', '%'.$search.'%')
+        //         ->orWhere('email', 'like', '%'.$search.'%');
+        // });
+
+
         $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where('name', 'like', '%'.$search.'%');
+            $query->where(function ($query) use($search){
+                $query->where('name', 'like', '%'.$search.'%')
+                ->orWhere('phone', 'like', '%'.$search.'%')
+                ->orWhere('city', 'like', '%'.$search.'%');
+
+            });
+            // $query->where('name', 'like', '%'.$search.'%');
         })->when($filters['trashed'] ?? null, function ($query, $trashed) {
             if ($trashed === 'with') {
                 $query->withTrashed();
