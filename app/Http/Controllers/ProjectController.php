@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\ProjectUser;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -79,12 +80,17 @@ class ProjectController extends Controller
        $exist_team = $project->users->pluck('id')->toArray();
 
        // dd($project->toArray());
+      $occupied_worker = ProjectUser::whereHas('user',function($q){
+          $q->where('user_type','worker');
+      })->where('end',null)->pluck('user_id');
+
+    //    dd($project_user->toArray());
         $user = User::whereIn('user_type',['manager','worker'])->get()->groupBy('user_type');
 
 
     //    dd($project->toArray() , $user->toArray());
 
-        return Inertia::render('Projects/Team',['exist_team'=> $exist_team, 'project'=>$project, 'user'=>$user]);
+        return Inertia::render('Projects/Team',['occupied_worker'=>$occupied_worker , 'exist_team'=> $exist_team, 'project'=>$project, 'user'=>$user]);
 
 
     }

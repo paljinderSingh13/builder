@@ -66,11 +66,16 @@ Route::group(['middleware'=>'auth'],function(){
 Route::get('project-team/{project_id}',[ProjectController::class,'manage_team'])->name('project.team');
 Route::post('manage_team',[ProjectController::class,'sync_team'])->name('sync.team');
 
-
+//Reports
+// Route::post('report-filter', [ReportsController::class, 'filter'])
+    // ->name('report.filter');
 
 
 
 });
+
+Route::post('report-filter', [ReportsController::class, 'filter'])
+    ->name('report.filter');
 
 
 Route::get('users', [UsersController::class, 'index'])
@@ -163,7 +168,7 @@ Route::put('contacts/{contact}/restore', [ContactsController::class, 'restore'])
 
 // Reports
 
-Route::get('reports', [ReportsController::class, 'index'])
+Route::match(['get','post'],'reports', [ReportsController::class, 'index'])
     ->name('reports')
     ->middleware('auth');
 

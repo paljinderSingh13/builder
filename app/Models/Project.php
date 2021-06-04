@@ -19,4 +19,10 @@ class Project extends Model
         return $this->belongsToMany(User::class)
         ->wherePivot('end',null);
     }
+
+    public function user_relation(){
+
+        return $this->belongsToMany(User::class)
+        ->wherePivot('end',null);
+    }
 }

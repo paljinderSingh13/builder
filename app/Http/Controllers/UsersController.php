@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\ProjectUser;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -16,6 +17,21 @@ class UsersController extends Controller
 
 
 public function staff($type){
+
+//     $data = ProjectUser::select(['id','user_id','project_id','start','end'])
+//         ->where('start','<=',date('Y-m-d'))
+//                 ->where('end','>=',date('Y-m-d'))->get();
+//     dd($data);
+
+//     $user_data = User::with('project_rel', function($query){
+//                         $query->where('project_id','=',1);
+//                     }
+// )->whereIn('user_type',['manager','worker'])
+//                ->get();
+
+//     dd($user_data->toArray());
+
+
 
     $staff = User::whereUserType($type)
             ->orderBy('id','desc')

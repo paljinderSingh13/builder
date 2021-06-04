@@ -13,6 +13,7 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
+    protected $fillable = ['account_id', 'first_name', 'last_name', 'email', 'owner', 'photo_path', 'address', 'mobile', 'employee_id', 'expertise', 'emergency_contact', 'user_type', 'date_of_joining'];
 
     protected $casts = [
         'owner' => 'boolean',
@@ -74,5 +75,21 @@ class User extends Authenticatable
                 $query->onlyTrashed();
             }
         });
+    }
+
+    public function project_rel(){
+
+        return $this->belongsToMany(Project::class)
+                    ->withPivot('start','end')
+                   ->wherePivot('start','<=',date('Y-m-d'))
+                   ->wherePivot('end','>=',date('Y-m-d'));
+
+
+
+    }
+
+    public function pivotss(){
+
+        return $this->belongsToMany(Project::class)->withPivot('start','end');
     }
 }
