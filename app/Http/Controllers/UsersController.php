@@ -35,15 +35,15 @@ public function staff($type){
 
     $staff = User::whereUserType($type)
             ->orderBy('id','desc')
-            ->get()
-            ->transform(fn ($user)=>['id' => $user->id,
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'mobile' => $user->mobile,
-                        'owner' => $user->owner,
-                        'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 80, 'h' => 80, 'fit' => 'crop']) : null,
-                        'deleted_at' => $user->deleted_at]
-                    );
+            ->get();
+            // ->transform(fn ($user)=>['id' => $user->id,
+            //             'name' => $user->name,
+            //             'email' => $user->email,
+            //             'mobile' => $user->mobile,
+            //             'owner' => $user->owner,
+            //             'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 80, 'h' => 80, 'fit' => 'crop']) : null,
+            //             'deleted_at' => $user->deleted_at]
+            //         );
     return Inertia::render('Staff/Index',['data'=>$staff,'user_type'=>$type]);
 
 }
@@ -54,16 +54,16 @@ public function staff($type){
 
        $users =  User::orderByName()
                 ->filter(Request::only('search', 'role', 'trashed'))
-                ->get()
-                ->transform(fn ($user) => [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'mobile' => $user->mobile,
-                    'owner' => $user->owner,
-                    'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 80, 'h' => 80, 'fit' => 'crop']) : null,
-                    'deleted_at' => $user->deleted_at,
-                ]);
+                ->get();
+                // ->transform(fn ($user) => [
+                //     'id' => $user->id,
+                //     'name' => $user->name,
+                //     'email' => $user->email,
+                //     'mobile' => $user->mobile,
+                //     'owner' => $user->owner,
+                //     'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 80, 'h' => 80, 'fit' => 'crop']) : null,
+                //     'deleted_at' => $user->deleted_at,
+                // ]);
 
         return Inertia::render('Users/Index', [
             'filters' => Request::all('search', 'role', 'trashed'),
@@ -134,7 +134,6 @@ public function staff($type){
     public function edit(User $user)
     {
 
-        //dump($user->toArray());
         return Inertia::render('Users/Edit', [
             'user' => [
                 'id' => $user->id,
@@ -148,7 +147,7 @@ public function staff($type){
                 "employee_id" => $user->employee_id,
                 "expertise" => $user->expertise,
                 "emergency_contact" => $user->expertise,
-                "user_type" => 'manager',
+                "user_type" => $user->user_type,
                 "date_of_joining" => $user->date_of_joining,
                 'deleted_at' => $user->deleted_at,
             ],

@@ -2,7 +2,7 @@
   <div>
     <h1 class="mb-8 font-bold text-3xl">
       <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('staff',type)">Staff</inertia-link>
-      <span class="text-indigo-400 font-medium">/</span> {{ type }}
+      <span class="text-indigo-400 font-medium">/</span> {{ type.toUpperCase() }}
     </h1>
     <div class="bg-white rounded-md shadow overflow-hidden max-w-full">
       <form @submit.prevent="store">
@@ -38,7 +38,7 @@
 
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
-          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Create User</loading-button>
+          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Create {{type}}</loading-button>
         </div>
       </form>
     </div>

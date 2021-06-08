@@ -100,7 +100,6 @@ class ProjectController extends Controller
     public function sync_team(){
 
         $project = Project::find(Request::get('project_id'));
-        // $users = $project->users->pluck('id')->toArray();
 
         if(Request::get('type') == 'in'){
             $project->users()->attach(Request::get('team'),['start'=>date('Y-m-d h:m')]);
@@ -109,23 +108,18 @@ class ProjectController extends Controller
             $project->users()->updateExistingPivot(Request::get('team'),['end'=>date('Y-m-d h:m')]);
         }
 
-        // foreach(Request::get('team') as $val){
-        //      if(!in_array($val, $users )){
-        //         $new[$val]= ['start'=>date('Y-m-d h:m')];
-        //      }else{
-        //         $new[] = $val;
+       // (Request::get('type') == 'in')?$type="Add":$type="Remove";
 
-        //      }
-        // }
+        return Redirect::back();//->with('success', "Successfully $type Team Member.");
 
-       // dd($new);
-       // $project->users()->sync($new);
+    }
 
-        (Request::get('type') == 'in')?$type="Add":$type="Remove";
+    public function status($project, $status){
 
-        return Redirect::back()->with('success', "Successfully $type Team Member.");
+        //dd($project, $status);
 
-      // dd(Request::all());
+        Project::whereId($project)->update(['status'=>($status==1?0:1)]);
+        return back();
 
     }
 

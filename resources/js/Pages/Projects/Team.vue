@@ -1,20 +1,15 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Reports Create</h1>
+    <h1 class="mb-8 font-bold text-3xl">  {{ project.name }} Team</h1>
+
+    <div class="grid grid-cols-2 gap-4 bg-white bg-indigo-800 rounded">
+        <div class=" p-6 text-white   ">  Project Name : {{ project.name }} </div>
+        <div class=" p-6 text-white ">  Project detail : {{ project.detail }} </div>
+        <div class=" p-6 text-white ">  Project Address : {{ project.address }} </div>
+        <div class=" p-6 text-white ">  Project Start : {{ project.start_date }} </div>
+        <div class=" p-6 text-white ">  Project End : {{ project.end_date }} </div>
 
 
-
-
-
-
-
-
-
-
-
-
-    <div class="grid grid-cols-1 gap-4 ">
-        <div class="shadow h-10 p-4 bg-white">  Project name : {{ project.name }} </div>
     </div>
 
             <h1 class="m-4 fa-3x font-thin p-2 text-center mt-20"> Manager</h1>
@@ -80,7 +75,7 @@
 
         </div>
 
-        <div v-if="all_occupied" class="bg-indigo-800 rounded text-white m-2 p-4 h-20">No-worker-available </div>
+        <!-- <div v-if="all_occupied" class="bg-indigo-800 rounded text-white m-2 p-4 h-20">No-worker-available </div> -->
 
 
 
@@ -94,7 +89,7 @@
 import Layout from '@/Shared/Layout'
 
 export default {
-  metaInfo: { title: 'Reports' },
+  metaInfo: { title: 'Project Team' },
   layout: Layout,
   props:{
       project:Object,

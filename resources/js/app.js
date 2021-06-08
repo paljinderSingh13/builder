@@ -20,7 +20,7 @@ const el = document.getElementById('app')
 
 new Vue({
   metaInfo: {
-    titleTemplate: title => (title ? `${title} - Ping CRM` : 'Ping CRM'),
+    titleTemplate: title => (title ? `${title} ` : 'Construction App'),
   },
   render: h =>
     h(App, {

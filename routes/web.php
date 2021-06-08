@@ -48,7 +48,7 @@ Route::get('/', [DashboardController::class, 'index'])
 // Users
 Route::group(['middleware'=>'auth'],function(){
 
-    Route::get('staff-{type}',[UsersController::class,'staff'])->name('staff');
+    Route::get('staff-{type?}',[UsersController::class,'staff'])->name('staff');
     Route::get('create-{type}',[UsersController::class,'staff_create'])->name('staff.create');
 
     Route::get('staff-{type}/{user}',[UsersController::class,'detail'])->name('detail');
@@ -61,7 +61,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::put('project/{project}',[ProjectController::class,'update'])->name('project.update');
     Route::delete('project/{project}', [ProjectController::class, 'destroy'])->name('project.destroy');
     Route::put('restore_project/{project}/restore', [ProjectController::class, 'restore'])->name('project.restore');
-//Manage Team
+    Route::get('project-status-{project}{status}',[ProjectController::class,'status'])->name('project.status');
+
+
+    //Manage Team
 
 Route::get('project-team/{project_id}',[ProjectController::class,'manage_team'])->name('project.team');
 Route::post('manage_team',[ProjectController::class,'sync_team'])->name('sync.team');

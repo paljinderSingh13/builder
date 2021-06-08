@@ -27,7 +27,7 @@
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
           <button v-if="!data.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete Project</button>
-          <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Update User</loading-button>
+          <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Update Project</loading-button>
         </div>
       </form>
     </div>
@@ -47,7 +47,7 @@ import TextArea from '@/Shared/TextareaInput'
 export default {
   metaInfo() {
     return {
-      title: `${this.form.first_name} ${this.form.last_name}`,
+      title: `Edit ${this.form.name} `,
     }
   },
   components: {

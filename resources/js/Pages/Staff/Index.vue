@@ -1,12 +1,20 @@
 <template>
 <div>
-    <h1 class="mb-8 font-bold text-3xl">{{ user_type }}</h1>
-    <div class="mb-6 flex justify-between items-center">
-        <inertia-link class="btn-indigo" :href="route('staff.create',user_type)">
-        <span>Create</span>
-            <span class="hidden md:inline">{{ user_type }}</span>
-      </inertia-link>
+
+    <div class="grid grid-cols-2 mb-6">
+        <div class="">
+                <h1 class="mb-8 font-bold text-3xl">{{ user_type.toUpperCase() }}</h1>
+        </div>
+
+        <div class="mb-6 text-right mr-8 justify-between items-center">
+            <inertia-link class="btn-indigo" :href="route('staff.create',user_type)">
+                <span>Create</span>
+                <span class="hidden md:inline">{{ user_type }}</span>
+            </inertia-link>
+        </div>
+
     </div>
+
     <div class="bg-white rounded-md shadow overflow-x-auto">
         <table class="w-full whitespace-nowrap">
             <tr class="text-left font-bold">
@@ -17,9 +25,9 @@
             </tr>
 
             <tr v-for="row in data" :key="row.id" class=" hover:bg-gray-100 focus-within:bg-gray-100">
-                <td class="border-t px-6 py-4 flex item-center">
-                    <img v-if="row.photo" class="block w-10 h-8 mr-2 -my-2" :src="row.photo" />
-                    <img v-else class="block w-10 h-8 mr-2 -my-2" src="/img/users/dummy-profile.png" />
+                <td class="border-t px-6 py-4">
+                    <img v-if="row.photo" class="inline-block w-10 h-8 mr-2" :src="row.photo" />
+                    <img v-else class="inline-block w-10 h-8 mr-2" src="/img/users/dummy-profile.png" />
 
                     {{row.name}}
 
@@ -53,6 +61,8 @@
 
  import Layout from "@/Shared/Layout";
 export default{
+      metaInfo: { title: 'Create Staff' },
+
 layout:Layout,
     props:{
         data:Array,

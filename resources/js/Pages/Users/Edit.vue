@@ -2,9 +2,9 @@
   <div>
     <div class="mb-8 flex justify-start max-w-3xl">
       <h1 class="font-bold text-3xl">
-        <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('users')">Users</inertia-link>
+        <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('staff',[user.user_type])">{{user.user_type.toUpperCase()}}</inertia-link>
         <span class="text-indigo-400 font-medium">/</span>
-        {{ form.first_name }} {{ form.last_name }}
+          {{ form.first_name }} {{ form.last_name }}
       </h1>
       <img v-if="user.photo" class="block w-8 h-8 rounded-full ml-4" :src="user.photo" />
     </div>
@@ -37,8 +37,8 @@
           </select-input> -->
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
-          <button v-if="!user.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete User</button>
-          <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Update User</loading-button>
+          <button v-if="!user.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete {{user.user_type}}</button>
+          <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Update {{user.user_type}}</loading-button>
         </div>
       </form>
     </div>
