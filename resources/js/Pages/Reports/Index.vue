@@ -29,8 +29,8 @@
 
       <div class="grid grid-cols-1 bg-indigo-900 " >
             <div class="bg-indigo-800 text-white p-3 m-2" v-for="(item,id) in managerData" :key="id">
-              <img v-if="item[0]['user']['photo_path']"  class="w-10 rounded-full inline " :src="'/img/'+item[0]['user']['photo_path']" alt="">
-              <img v-else  class="w-10 rounded-full inline " src="/img/users/dummy-profile.png" alt="">
+              <img v-if="item[0]['user']['photo_path']"  class="w-10 rounded-full inline " :src="path+item[0]['user']['photo_path']" alt="">
+              <img v-else  class="w-10 rounded-full inline " :src="path+'users/dummy-profile.png'" alt="">
               {{item[0]['user']['first_name']  }} {{item[0]['user']['last_name']  }}
 
               <span class="bg-white p-2 mr-2 text-black float-right rounded" v-for="row in item" :key="row.id"> {{ row.project.name }} </span> </div>
@@ -44,8 +44,8 @@
 
       <div class="grid grid-cols-1 bg-indigo-900 rounded" >
             <div class="bg-indigo-800 text-white p-3 m-2 rounded" v-for="(item,id) in workerData" :key="id">
-              <img v-if="item[0]['user']['photo_path']"  class="w-10 rounded-full inline " :src="'/img/'+item[0]['user']['photo_path']" alt="">
-              <img v-else  class="w-10 rounded-full inline " src="/img/users/dummy-profile.png" alt="">
+              <img v-if="item[0]['user']['photo_path']"  class="w-10 rounded-full inline " :src="path+item[0]['user']['photo_path']" alt="">
+              <img v-else  class="w-10 rounded-full inline " :src="path+'users/dummy-profile.png'" alt="">
 
               {{item[0]['user']['first_name']  }} {{item[0]['user']['last_name']  }}
 
@@ -70,6 +70,8 @@ export default {
   },
   data(){
     return {
+        path:'/pingcrm/public/img/',
+
         filters:{date:this.date},
         user_type:'all',
         name:null,

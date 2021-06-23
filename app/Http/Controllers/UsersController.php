@@ -18,24 +18,12 @@ class UsersController extends Controller
 
 public function staff($type){
 
-//     $data = ProjectUser::select(['id','user_id','project_id','start','end'])
-//         ->where('start','<=',date('Y-m-d'))
-//                 ->where('end','>=',date('Y-m-d'))->get();
-//     dd($data);
-
-//     $user_data = User::with('project_rel', function($query){
-//                         $query->where('project_id','=',1);
-//                     }
-// )->whereIn('user_type',['manager','worker'])
-//                ->get();
-
-//     dd($user_data->toArray());
-
-
-
-    $staff = User::whereUserType($type)
+    $staff = User::select(['id', 'first_name', 'last_name', 'email', 'photo_path', 'address', 'mobile', 'employee_id', 'expertise', 'emergency_contact', 'user_type', 'date_of_joining'])->whereUserType($type)
             ->orderBy('id','desc')
+            ->with('staff_availablity:id')
             ->get();
+
+   // dd($staff->toArray());
             // ->transform(fn ($user)=>['id' => $user->id,
             //             'name' => $user->name,
             //             'email' => $user->email,
@@ -128,7 +116,7 @@ public function staff($type){
             "date_of_joining" => Request::get('date_of_joining')
         ]);
 
-        return Redirect::route('staff',Request::get('user_type'))->with('success', Request::get('user_type').' created.');
+        return Redirect::route('staff',Request::get('user_type'))->with('success', Request::get('user_type').' Added Successfully.');
     }
 
     public function edit(User $user)
@@ -181,7 +169,7 @@ public function staff($type){
             $user->update(['password' => Request::get('password')]);
         }
 
-        return Redirect::back()->with('success', 'User updated.');
+        return Redirect::back()->with('success', $user->user_type.' Updated Successfully.');
     }
 
     public function destroy(User $user)

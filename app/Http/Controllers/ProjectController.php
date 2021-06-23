@@ -37,7 +37,7 @@ class ProjectController extends Controller
         $model = new Project();
         $model->fill(Request::all());
         $model->save();
-        return Redirect::route('projects')->with('success', 'Project created');
+        return Redirect::route('projects')->with('success', 'Project Added Successful.');
 
     }
 
@@ -55,7 +55,7 @@ class ProjectController extends Controller
         ]);
 
         $project->update(Request::only('name', 'detail', 'address', 'start_date', 'end_date', 'status'));
-        return Redirect::back()->with('success', 'Project updated.');
+        return Redirect::back()->with('success', 'Project Updated Successfully.');
     }
 
 
@@ -63,14 +63,14 @@ class ProjectController extends Controller
 
         $project->delete();
 
-        return Redirect::back()->with('success', 'Project deleted.');
+        return Redirect::back()->with('success', 'Project Deleted Successfully.');
 
     }
 
     public function restore($id)
     {
         Project::whereId($id)->restore();
-        return Redirect::back()->with('success', 'Project restored.');
+        return Redirect::back()->with('success', 'Project Restored Successfully.');
     }
 
     public function manage_team($project_id ){

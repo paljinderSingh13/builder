@@ -83,8 +83,10 @@ class User extends Authenticatable
                     ->withPivot('start','end')
                    ->wherePivot('start','<=',date('Y-m-d'))
                    ->wherePivot('end','>=',date('Y-m-d'));
-
-
+    }
+    public function staff_availablity(){
+        return $this->belongsToMany(Project::class)
+                ->wherePivot('end',null);
 
     }
 

@@ -1,22 +1,21 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">Projects</h1>
-    <div class="mb-6 flex justify-between items-center">
-        <inertia-link class="btn-indigo" :href="route('project.create')">
-        <span>Create Project</span>
 
-      </inertia-link>
-
-
+    <div class=" grid grid-cols-2">
+      <h1 class="mb-8 font-bold text-3xl">Projects</h1>
+      <div class="mb-6 flex  items-center justify-end">
+          <inertia-link class="btn-indigo" :href="route('project.create')">
+            <span>Add Project</span>
+          </inertia-link>
+      </div>
     </div>
-
 
     <div class="bg-white rounded-md shadow overflow-x-auto">
         <table class="w-full whitespace-nowrap">
             <tr class="text-left font-bold">
-                <th class="px-6 pt-6 pb-4">Name</th>
-                <th class="px-6 pt-6 pb-4">Start</th>
-                <th class="px-6 pt-6 pb-4">End</th>
+                <th class="px-6 pt-6 pb-4">Project Name</th>
+                <th class="px-6 pt-6 pb-4">Start Date</th>
+                <th class="px-6 pt-6 pb-4">End Date</th>
                 <th class="px-6 pt-6 pb-4">Status</th>
                 <th class="px-6 pt-6 pb-4" colspan="2">Action</th>
             </tr>

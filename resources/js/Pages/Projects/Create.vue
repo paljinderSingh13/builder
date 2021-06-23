@@ -9,9 +9,9 @@
     <div class="bg-white rounded-md shadow overflow-hidden max-w-full">
       <form @submit.prevent="store">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <text-input v-model="form.name" :error="form.errors.name" class="pr-6 pb-8 w-full " label="Project Name" />
+          <text-input v-model="form.name" :error="form.errors.name" class="pr-6 pb-8 w-full " label="Project Name * " />
 
-          <text-area v-model="form.address" :error="form.errors.address" class="pr-6 pb-8 w-full " label="Address" />
+          <text-area v-model="form.address" :error="form.errors.address" class="pr-6 pb-8 w-full " label="Location" />
 
           <text-input v-model="form.start_date" type="date" :error="form.errors.start_date" class="pr-6 pb-8 w-full lg:w-1/2" label="Start Date" />
           <text-input v-model="form.end_date" type="date"  :error="form.errors.end_date" class="pr-6 pb-8 w-full lg:w-1/2" label="End  Date" />
@@ -21,7 +21,7 @@
 
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
-          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Create Project</loading-button>
+          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Add Project</loading-button>
         </div>
       </form>
     </div>

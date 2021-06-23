@@ -17,8 +17,17 @@ class Project extends Model
     public function users(){
 
         return $this->belongsToMany(User::class)
-        ->wherePivot('end',null);
+                        ->withPivot('start')
+                        ->wherePivot('end',null);
     }
+
+    public function staff(){//use for project wise report
+
+        return $this->belongsToMany(User::class)
+                    ->withPivot('start','end');
+    }
+
+
 
     public function user_relation(){
 

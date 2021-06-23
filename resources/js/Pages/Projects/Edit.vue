@@ -10,7 +10,7 @@
       </h1>
     </div>
     <trashed-message v-if="data.deleted_at" class="mb-6" @restore="restore">
-      This user has been deleted.
+      This project has been deleted.
     </trashed-message>
     <div class="bg-white rounded-md shadow overflow-hidden max-w-full">
       <form @submit.prevent="update">
@@ -81,12 +81,12 @@ export default {
       this.form.post(this.route('project.update', this.data.id))
     },
     destroy() {
-      if (confirm('Are you sure you want to delete this user?')) {
+      if (confirm('Are you sure you want to delete this project?')) {
         this.$inertia.delete(this.route('project.destroy', this.data.id))
       }
     },
     restore() {
-      if (confirm('Are you sure you want to restore this user?')) {
+      if (confirm('Are you sure you want to restore this project?')) {
         this.$inertia.put(this.route('project.restore', this.data.id))
       }
     },

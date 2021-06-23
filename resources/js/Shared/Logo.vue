@@ -1,6 +1,6 @@
 <template>
 
-              <img   class="w-10 inline " src="/img/users/gibbs.jpeg" alt="">
+              <img   class="w-10 inline " :src="path+'img/users/gibbs.jpeg'" alt="">
 
 
   <!-- <svg viewBox="0 0 1185 266" xmlns="http://www.w3.org/2000/svg">
@@ -9,3 +9,12 @@
   </svg> -->
 
 </template>
+<script>
+export default{
+  data(){
+    return{
+      path:'/pingcrm/public/'
+    }
+  }
+}
+</script>

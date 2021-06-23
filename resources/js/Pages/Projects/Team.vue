@@ -1,13 +1,14 @@
 <template>
   <div>
-    <h1 class="mb-8 font-bold text-3xl">  {{ project.name }} Team</h1>
+    <h1 class="mb-8 font-bold text-3xl capitalize">  {{ project.name }} Team</h1>
 
-    <div class="grid grid-cols-2 gap-4 bg-white bg-indigo-800 rounded">
-        <div class=" p-6 text-white   ">  Project Name : {{ project.name }} </div>
-        <div class=" p-6 text-white ">  Project detail : {{ project.detail }} </div>
-        <div class=" p-6 text-white ">  Project Address : {{ project.address }} </div>
-        <div class=" p-6 text-white ">  Project Start : {{ project.start_date }} </div>
-        <div class=" p-6 text-white ">  Project End : {{ project.end_date }} </div>
+    <div class="grid grid-cols-2  border">
+        <div class="col-span-2 p-4 text-center text-2xl "> Project Details  </div>
+        <div class=" p-3 border m-1  hover:bg-gray-100 focus-within:bg-gray-100  "> <label  class="w-1/2 inline-block font-black ">  Project Name : </label> {{ project.name }} </div>
+        <div class=" p-3 border m-1 hover:bg-gray-100 focus-within:bg-gray-100 row-span-2"> <label  class="w-1/2 inline-block font-black ">    Project detail : </label>{{ project.detail }} </div>
+        <div class=" p-3 border m-1 hover:bg-gray-100 focus-within:bg-gray-100 row-span-2"> <label  class="w-1/2 inline-block font-black ">  Location : </label>{{ project.address }} </div>
+        <div class=" p-3 border m-1 hover:bg-gray-100 focus-within:bg-gray-100 "> <label  class="w-1/2 inline-block font-black ">   Start Date: </label>{{ project.start_date }} </div>
+        <div class=" p-3 border m-1 hover:bg-gray-100 focus-within:bg-gray-100"> <label  class="w-1/2 inline-block font-black ">   End Date : </label>{{ project.end_date }} </div>
 
 
     </div>
@@ -21,8 +22,8 @@
             @dragover.prevent
             class="grid gap-2 grid-cols-1 bg-indigo-400 rounded shadow-4xl">
             <div style="" draggable="true" @dragstart="startDrag($event, data, 'out')"  class="bg-indigo-800 rounded text-white m-2 p-4 h-20" v-for="data in user.manager" :key="data.id" v-if="exist_team.includes(data.id)">
-                <img v-if="data.photo_path"  class="w-10 rounded-full inline " :src="'/img/'+data.photo_path" alt="">
-                <img v-else  class="w-10 rounded-full inline " src="/img/users/dummy-profile.png" alt="">
+                <img v-if="data.photo_path"  class="w-10 rounded-full inline " :src="path+data.photo_path" alt="">
+                <img v-else  class="w-10 rounded-full inline " :src="path+'img/users/dummy-profile.png'" alt="">
                   {{ data.first_name }} {{ data.last_name }} </div>
 
         </div>
@@ -34,8 +35,8 @@
             @dragover.prevent
         >
             <div style="" draggable="true" @dragstart="startDrag($event, data,'in')"  class="bg-indigo-800 rounded text-white m-2 p-4 h-20" v-for="data in user.manager" :key="data.id" v-if="!exist_team.includes(data.id)">
-                <img v-if="data.photo_path"  class="w-10 rounded-full inline " :src="'/img/'+data.photo_path" alt="">
-                <img v-else  class="w-10 rounded-full inline " src="/img/users/dummy-profile.png" alt="">
+                <img v-if="data.photo_path"  class="w-10 rounded-full inline " :src="path+data.photo_path" alt="">
+                <img v-else  class="w-10 rounded-full inline " :src="path+'img/users/dummy-profile.png'" alt="">
                  {{ data.first_name }} {{ data.last_name }} </div>
 
         </div>
@@ -51,8 +52,8 @@
             @dragover.prevent
             class="grid gap-2 grid-cols-1 bg-indigo-400 rounded shadow-4xl">
             <div style="" draggable="true" @dragstart="startDrag($event, data, 'out')"  class="bg-indigo-800 rounded text-white m-2 p-4 h-20" v-for="data in user.worker" :key="data.id" v-if="exist_team.includes(data.id)">
-                <img v-if="data.photo_path"  class="w-10 rounded-full inline " :src="'/img/'+data.photo_path" alt="">
-                <img v-else  class="w-10 rounded-full inline " src="/img/users/dummy-profile.png" alt="">                 {{ data.first_name }} {{ data.last_name }}
+                <img v-if="data.photo_path"  class="w-10 rounded-full inline " :src="path+data.photo_path" alt="">
+                <img v-else  class="w-10 rounded-full inline " :src="path+'img/users/dummy-profile.png'" alt="">                 {{ data.first_name }} {{ data.last_name }}
             </div>
 
         </div>
@@ -68,8 +69,8 @@
             class="bg-indigo-800 rounded text-white m-2 p-4 h-20"
             v-for="data in user.worker" :key="data.id"
             v-if="!exist_team.includes(data.id) && !occupied_worker.includes(data.id) ">
-                <img v-if="data.photo_path"  class="w-10 rounded-full inline " :src="'/img/'+data.photo_path" alt="">
-                <img v-else  class="w-10 rounded-full inline " src="/img/users/dummy-profile.png" alt="">
+                <img v-if="data.photo_path"  class="w-10 rounded-full inline " :src="path+data.photo_path" alt="">
+                <img v-else  class="w-10 rounded-full inline "  :src="path+'img/users/dummy-profile.png'" alt="">
 
                  {{ data.first_name }} {{ data.last_name }} </div>
 
@@ -99,7 +100,8 @@ export default {
   },
   data(){
       return {
-          teams:[],
+            path:'/pingcrm/public/img/',
+            teams:[],
           include_team:[12,13],
           all_occupied:true,
       }

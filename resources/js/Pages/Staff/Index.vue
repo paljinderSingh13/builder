@@ -3,13 +3,13 @@
 
     <div class="grid grid-cols-2 mb-6">
         <div class="">
-                <h1 class="mb-8 font-bold text-3xl">{{ user_type.toUpperCase() }}</h1>
+                <h1 class="mb-8 font-bold text-3xl capitalize">{{ user_type }}</h1>
         </div>
 
         <div class="mb-6 text-right mr-8 justify-between items-center">
             <inertia-link class="btn-indigo" :href="route('staff.create',user_type)">
-                <span>Create</span>
-                <span class="hidden md:inline">{{ user_type }}</span>
+                <span>Add</span>
+                <span class="hidden md:inline capitalize">{{ user_type }}s</span>
             </inertia-link>
         </div>
 
@@ -26,10 +26,11 @@
 
             <tr v-for="row in data" :key="row.id" class=" hover:bg-gray-100 focus-within:bg-gray-100">
                 <td class="border-t px-6 py-4">
-                    <img v-if="row.photo" class="inline-block w-10 h-8 mr-2" :src="row.photo" />
-                    <img v-else class="inline-block w-10 h-8 mr-2" src="/img/users/dummy-profile.png" />
+                <span :class="{'bg-green-600':row.staff_availablity.length,'blues': !row.staff_availablity.length }" class="inline-block rounded-full w-4 h-4 mr-2"> </span>
 
-                    {{row.name}}
+                    <img v-if="row.photo_path" class="inline-block w-10 h-8 mr-2" :src="path+row.photo_path" />
+                     <img v-else class="inline-block w-10 h-8 mr-2" :src="path+'users/dummy-profile.png'" />
+                    {{row.first_name}} {{row.last_name}}
 
                     </td>
                 <td class="border-t"> {{row.email}}</td>
@@ -61,14 +62,25 @@
 
  import Layout from "@/Shared/Layout";
 export default{
-      metaInfo: { title: 'Create Staff' },
+      metaInfo: { title: 'Add Staff' },
 
 layout:Layout,
     props:{
         data:Array,
         user_type:String
+    },
+    data(){
+        return{
+            path:'/pingcrm/public/img/',
+
+        }
     }
 
 }
 
 </script>
+
+<style>
+    .blues {background-color:#00008B;}
+
+</style>

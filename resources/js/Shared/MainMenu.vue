@@ -46,6 +46,14 @@
         <div :class="isUrl('reports') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Date Reports</div>
       </inertia-link>
     </div>
+
+    <div class="mb-4">
+      <inertia-link class="flex items-center group py-3" :href="route('project.wise.report')">
+        <icon name="printer" class="w-4 h-4 mr-2" :class="isUrl('project-report') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <div :class="isUrl('project-report') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Project Report</div>
+      </inertia-link>
+    </div>
+
   </div>
 </template>
 

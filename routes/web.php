@@ -36,12 +36,12 @@ Route::post('login', [AuthenticatedSessionController::class, 'store'])
     ->name('login.store')
     ->middleware('guest');
 
-Route::delete('logout', [AuthenticatedSessionController::class, 'destroy'])
+Route::get('logouts', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
 // Dashboard
 
-Route::get('/', [DashboardController::class, 'index'])
+Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard')
     ->middleware('auth');
 
@@ -70,6 +70,9 @@ Route::get('project-team/{project_id}',[ProjectController::class,'manage_team'])
 Route::post('manage_team',[ProjectController::class,'sync_team'])->name('sync.team');
 
 //Reports
+
+Route::get('project-report/{project_id?}', [ReportsController::class, 'project_wise_report'])
+     ->name('project.wise.report');
 // Route::post('report-filter', [ReportsController::class, 'filter'])
     // ->name('report.filter');
 
