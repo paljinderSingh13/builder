@@ -10,20 +10,21 @@
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('staff','manager')">
         <icon name="office" class="w-4 h-4 mr-2" :class="isUrl('staff-manager') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('staff-manager') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Manager</div>
+        <div :class="isUrl('staff-manager') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Managers</div>
       </inertia-link>
     </div>
 
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('staff','worker')">
-        <icon name="office" class="w-4 h-4 mr-2" :class="isUrl('staff-worker') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('staff-worker') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Worker</div>
+        <icon name="workers" class="w-4 h-4 mr-2" :class="isUrl('staff-manager') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+
+        <div :class="isUrl('staff-worker') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Workers</div>
       </inertia-link>
     </div>
 
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('projects')">
-        <icon name="office" class="w-4 h-4 mr-2" :class="isUrl('projects') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <icon name="project" class="w-4 h-4 mr-2" :class="isUrl('projects') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
         <div :class="isUrl('projects') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Projects</div>
       </inertia-link>
     </div>
@@ -42,14 +43,14 @@
     </div> -->
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('reports')">
-        <icon name="printer" class="w-4 h-4 mr-2" :class="isUrl('reports') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <icon name="calendar" class="w-4 h-4 mr-2" :class="isUrl('reports') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
         <div :class="isUrl('reports') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Date Reports</div>
       </inertia-link>
     </div>
 
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('project.wise.report')">
-        <icon name="printer" class="w-4 h-4 mr-2" :class="isUrl('project-report') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <icon name="report" class="w-4 h-4 mr-2" :class="isUrl('project-report') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
         <div :class="isUrl('project-report') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Project Report</div>
       </inertia-link>
     </div>

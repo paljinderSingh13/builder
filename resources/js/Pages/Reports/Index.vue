@@ -10,8 +10,8 @@
     <div>
        <select class="form-select" @change="userType()" v-model="user_type" >
                 <option value="all">All </option>
-                 <option value="manager">Manager </option>
-                <option value="worker">Worker </option>
+                 <option value="manager">Managers </option>
+                <option value="worker">Workers </option>
         </select>
     </div>
     <div class="mr-4">
@@ -20,27 +20,52 @@
 
   </div>
 
-  <div v-if="show_manager" class="grid grid-cols-1 gap-1 m-2">
+  <div v-if="!managerData && !workerData" class="grid grid-cols-1 gap-1 m-2">
     <div>
-      <h3 class=" font-light text-center m-12   text-5xl"> Manager </h3>
+      <h3 class=" font-light text-center m-12   text-2xl">    No-Data-Available </h3>
+    </div>
+  </div>
+
+  <div v-if="show_manager && !managerData && workerData" class="grid grid-cols-1 gap-1 m-2">
+    <div>
+      <h3 class=" font-light text-center m-12   text-5xl"> Managers </h3>
+      <h3 class=" font-light text-center m-12   text-xl">No-managers-data </h3>
+    </div>
+  </div>
+
+  <div v-if="show_manager && managerData " class="grid grid-cols-1 gap-1 m-2">
+    <div>
+      <h3 class=" font-light text-center m-12   text-5xl"> Managers</h3>
 
 
-      <h3 class=" font-light text-center m-12   text-xl" v-if="!data.manager">No-manager-data </h3>
 
       <div class="grid grid-cols-1 bg-indigo-900 " >
             <div class="bg-indigo-800 text-white p-3 m-2" v-for="(item,id) in managerData" :key="id">
-              <img v-if="item[0]['user']['photo_path']"  class="w-10 rounded-full inline " :src="path+item[0]['user']['photo_path']" alt="">
+              <img v-if="item[0]['user']['photo_path']"  class="w-10 h-10 rounded-full inline " :src="path+item[0]['user']['photo_path']" alt="">
               <img v-else  class="w-10 rounded-full inline " :src="path+'users/dummy-profile.png'" alt="">
               {{item[0]['user']['first_name']  }} {{item[0]['user']['last_name']  }}
 
-              <span class="bg-white p-2 mr-2 text-black float-right rounded" v-for="row in item" :key="row.id"> {{ row.project.name }} </span> </div>
+              <span class="bg-white p-2 mr-2 text-black float-right rounded" v-for="row in item" :key="row.id">
+                <inertia-link class="inline-block  items-center" :href="route('project.team', row.project.id)" tabindex="-1">
+                  {{ row.project.name }}
+                </inertia-link>
+
+                 </span> </div>
       </div>
     </div>
   </div>
 
-  <div v-if="show_worker" class="grid grid-cols-1 gap-1 m-2 ">
+<div v-if="show_worker && !workerData && managerData" class="grid grid-cols-1 gap-1 m-2 ">
     <div>
-      <h3 class=" font-light text-center m-12   text-5xl"> Worker </h3>
+            <h3 class=" font-light text-center m-12   text-5xl"> Workers </h3>
+
+      <h3 class=" font-light text-center m-12   text-xl"> No-workers-data </h3>
+    </div>
+</div>
+
+  <div v-if="show_worker && workerData" class="grid grid-cols-1 gap-1 m-2 ">
+    <div>
+      <h3 class=" font-light text-center m-12   text-5xl"> Workers </h3>
 
       <div class="grid grid-cols-1 bg-indigo-900 rounded" >
             <div class="bg-indigo-800 text-white p-3 m-2 rounded" v-for="(item,id) in workerData" :key="id">
@@ -49,7 +74,13 @@
 
               {{item[0]['user']['first_name']  }} {{item[0]['user']['last_name']  }}
 
-              <span class="bg-white p-2 mr-2 text-black float-right rounded" v-for="row in item" :key="row.id"> {{ row.project.name }} </span> </div>
+              <span class="bg-white p-2 mr-2 text-black float-right rounded" v-for="row in item" :key="row.id">
+
+              <inertia-link class="inline-block  items-center" :href="route('project.team', row.project.id)" tabindex="-1">
+                {{ row.project.name }}
+              </inertia-link>
+
+              </span> </div>
       </div>
     </div>
   </div>

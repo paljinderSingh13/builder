@@ -44,6 +44,7 @@
         </div>
       </div>
     </div>
+    <div class="fa-1x font-thin bg-indigo-800 p-2 text-white text-center ">                                       All Rights Reserved by Gibbs Group.                                                                       Design & Developed By : Stealth Media Ltd. </div>
   </div>
 </template>
 

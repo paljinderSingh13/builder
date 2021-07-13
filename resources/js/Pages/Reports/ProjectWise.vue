@@ -102,7 +102,7 @@ import Layout from '@/Shared/Layout'
                     if(date){
                         return moment(date).format('Do MMMM YYYY');
                     }else{
-                        return "..continue"
+                        return "Active"
                     }
                 },
                 uc_word(word){

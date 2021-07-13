@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\ProjectUser;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
-
+use Carbon\Carbon;
 
 use Inertia\Inertia;
 
@@ -76,23 +76,15 @@ class ProjectController extends Controller
     public function manage_team($project_id ){
 
         $project = Project::with('users')->whereId($project_id)->first();
-
-       $exist_team = $project->users->pluck('id')->toArray();
-
+        $exist_team = $project->users->pluck('id')->toArray();
        // dd($project->toArray());
-      $occupied_worker = ProjectUser::whereHas('user',function($q){
+        $occupied_worker = ProjectUser::whereHas('user',function($q){
           $q->where('user_type','worker');
-      })->where('end',null)->pluck('user_id');
-
-    //    dd($project_user->toArray());
+        })->where('end',null)->pluck('user_id')->toArray();
+       // dd($exist_team , $occupied_worker->toArray());
         $user = User::whereIn('user_type',['manager','worker'])->get()->groupBy('user_type');
-
-
     //    dd($project->toArray() , $user->toArray());
-
-        return Inertia::render('Projects/Team',['occupied_worker'=>$occupied_worker , 'exist_team'=> $exist_team, 'project'=>$project, 'user'=>$user]);
-
-
+        return Inertia::render('Projects/Team',['occupied_worker'=>array_map('intval', $occupied_worker) , 'exist_team'=> $exist_team, 'project'=>$project, 'user'=>$user]);
     }
 
 
@@ -105,18 +97,26 @@ class ProjectController extends Controller
             $project->users()->attach(Request::get('team'),['start'=>date('Y-m-d h:m')]);
         }
         else{
-            $project->users()->updateExistingPivot(Request::get('team'),['end'=>date('Y-m-d h:m')]);
+
+            $check = ProjectUser::where(['project_id'=>Request::get('project_id'), 'user_id'=>Request::get('team')])
+                        ->whereNull('end');
+            $start = new Carbon($check->first()->start);
+            $mintues = $start->diffInMinutes(Carbon::now());
+            if($mintues<=240){
+                $check->delete();//     dump('min',$mintues);
+            }else{
+                $project->users()->updateExistingPivot(Request::get('team'),['end'=>date('Y-m-d h:m')]);
+            }
         }
-
-       // (Request::get('type') == 'in')?$type="Add":$type="Remove";
-
+        // (Request::get('type') == 'in')?$type="Add":$type="Remove";
         return Redirect::back();//->with('success', "Successfully $type Team Member.");
 
     }
 
-    public function status($project, $status){
 
-        //dd($project, $status);
+
+
+    public function status($project, $status){
 
         Project::whereId($project)->update(['status'=>($status==1?0:1)]);
         return back();

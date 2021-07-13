@@ -2,7 +2,7 @@
   <div>
     <h1 class="mb-8 font-bold text-3xl capitalize">
       <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('staff',type)">Staff</inertia-link>
-      <span class="text-indigo-400 font-medium ">/</span> {{ type }}
+      <span class="text-indigo-400 font-medium ">/</span> Add {{ type }}
     </h1>
     <div class="bg-white rounded-md shadow overflow-hidden max-w-full">
       <form @submit.prevent="store">

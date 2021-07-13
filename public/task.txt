@@ -1,0 +1,30 @@
+13 july 2021
+
+Related to functionality tasks
+1. report datewise not working on stealth hosting
+2. Dashboard - display more detail for Manager and worker
+
+Design Changes tasks
+
+
+2. dashboard on project name clickable: complete
+3. Add footer : complete
+4. Dashboard Managers(4) worker(6) : complete
+5. round color size raise : complete
+6. maanger and worker picture rounded :complete
+7. edit view butto : complete
+8. Manager Worker s added - add manager s removed : complete
+9. Create manager  in above add word added : completed
+11 project wise report : continue change into Active : complete
+12 Back on project form : complete
+15 change icon on sidebar: complete
+
+
+13:Dark mode :  pending
+10. date wise project clickable : complete
+1. deploy on new hosting : complette
+14. in between >4 hour should be removed: complete
+
+database : stealth_gibbs
+
+stealthg_stealthgroup3333 Y&NX*q#Is{c}

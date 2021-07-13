@@ -19,7 +19,7 @@ class ReportsController extends Controller
 
         if($date  > date('Y-m-d')){
             return back()->with('error', 'Date must be less than from curremt date.');
-                }
+        }
 
         $data = ProjectUser::select(['id','user_id','project_id','start','end'])
                             ->with('user:id,first_name,last_name,photo_path,user_type','project:id,name')
@@ -30,6 +30,8 @@ class ReportsController extends Controller
                             })
                             ->get()
                             ->groupBy(['user.user_type','user_id']);
+
+            
 
         return Inertia::render('Reports/Index',['data'=>$data->toArray(), 'date'=>$date]);
     }
