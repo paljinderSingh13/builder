@@ -22,6 +22,7 @@ class ReportsController extends Controller
         }
 
         $data = ProjectUser::select(['id','user_id','project_id','start','end'])
+                            ->has('user')
                             ->with('user:id,first_name,last_name,photo_path,user_type','project:id,name')
                             ->whereDate('start','<=',$date)
                             ->Where(function($query)use($date){
@@ -29,9 +30,9 @@ class ReportsController extends Controller
                                 ->orWhereDate('end','>=',$date);
                             })
                             ->get()
-                            ->groupBy(['user.user_type','user_id']);
+                           ->groupBy(['user.user_type','user_id']);
 
-            
+         // dd($data->toArray());
 
         return Inertia::render('Reports/Index',['data'=>$data->toArray(), 'date'=>$date]);
     }

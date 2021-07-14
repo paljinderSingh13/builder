@@ -5,8 +5,7 @@
       <div class="md:h-screen md:flex md:flex-col">
         <div class="md:flex md:flex-shrink-0">
           <!-- <div class="bg-white md:flex-shrink-0 md:w-56 px-6 py-4 flex items-center justify-between md:justify-center"> -->
-          <div class="bg-white  flex items-center justify-between md:flex-shrink-0 md:justify-center md:w-56">
-
+          <div class="bg-white flex items-center justify-between md:flex-shrink-0 md:justify-center md:w-56">
             <inertia-link class="" :href="route('dashboard')">
               <logo class="fill-white flex h-14 inline mx-auto my-2 w-32" width="120" height="28" />
             </inertia-link>
@@ -30,7 +29,7 @@
               <div slot="dropdown" class="mt-2 py-2 shadow-xl bg-white rounded text-sm">
                 <inertia-link class="block px-6 py-2 hover:bg-indigo-500 hover:text-white" :href="route('users.edit', $page.props.auth.user.id)">My Profile</inertia-link>
                 <!-- <inertia-link class="block px-6 py-2 hover:bg-indigo-500 hover:text-white" :href="route('users')">Manage Users</inertia-link> method="delete" -->
-                <inertia-link class="block px-6 py-2 hover:bg-indigo-500 hover:text-white w-full text-left" :href="route('logout')" >Logout</inertia-link>
+                <inertia-link class="block px-6 py-2 hover:bg-indigo-500 hover:text-white w-full text-left" :href="route('logout')">Logout</inertia-link>
               </div>
             </dropdown>
           </div>
@@ -44,7 +43,10 @@
         </div>
       </div>
     </div>
-    <div class="fa-1x font-thin bg-indigo-800 p-2 text-white text-center ">                                       All Rights Reserved by Gibbs Group.                                                                       Design & Developed By : Stealth Media Ltd. </div>
+    <div class="fa-1x grid grid-cols-2 font-thin bg-indigo-800 p-2 text-white">
+      <div>All Rights Reserved by Gibbs Group.</div>
+      <div class="text-right">Design & Developed By : Stealth Media Ltd.</div>
+    </div>
   </div>
 </template>
 

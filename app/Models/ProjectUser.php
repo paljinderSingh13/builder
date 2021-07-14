@@ -24,6 +24,10 @@ class ProjectUser extends Model
         return $this->belongsTo(User::class,'user_id', 'id')->where('user_type', 'worker');
     }
 
+    public function manager_user(){
+        return $this->belongsTo(User::class,'user_id', 'id')->where('user_type', 'manager');
+    }
+
 
 
     public function project(){

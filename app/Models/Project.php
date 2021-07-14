@@ -24,7 +24,8 @@ class Project extends Model
     public function staff(){//use for project wise report
 
         return $this->belongsToMany(User::class)
-                    ->withPivot('start','end');
+                    ->withPivot('start','end')
+                    ->wherePivot('end',null);
     }
 
 

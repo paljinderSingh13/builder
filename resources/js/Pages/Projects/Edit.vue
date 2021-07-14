@@ -5,32 +5,27 @@
         <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('projects')">Projects</inertia-link>
         <span class="text-indigo-400 font-medium">/</span>
         {{ form.name }}
-
-
       </h1>
     </div>
-    <trashed-message v-if="data.deleted_at" class="mb-6" @restore="restore">
-      This project has been deleted.
-    </trashed-message>
+    <trashed-message v-if="data.deleted_at" class="mb-6" @restore="restore"> This project has been deleted. </trashed-message>
     <div class="bg-white rounded-md shadow overflow-hidden max-w-full">
       <form @submit.prevent="update">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-          <text-input v-model="form.name" :error="form.errors.name" class="pr-6 pb-8 w-full " label="Project Name" />
+          <text-input v-model="form.name" :error="form.errors.name" class="pr-6 pb-8 w-full" label="Project Name" />
 
-          <text-area v-model="form.address" :error="form.errors.address" class="pr-6 pb-8 w-full " label="Address" />
+          <text-area v-model="form.address" :error="form.errors.address" class="pr-6 pb-8 w-full" label="Address" />
 
-          <text-input v-model="form.start_date" type="date" :error="form.errors.start_date" class="pr-6 pb-8 w-full lg:w-1/2" label="Start Date" />
-          <text-input v-model="form.end_date" type="date"  :error="form.errors.end_date" class="pr-6 pb-8 w-full lg:w-1/2" label="End  Date" />
+          <!-- <text-input v-model="form.start_date" type="date" :error="form.errors.start_date" class="pr-6 pb-8 w-full lg:w-1/2" label="Start Date" /> -->
+          <!-- <text-input v-model="form.end_date" type="date"  :error="form.errors.end_date" class="pr-6 pb-8 w-full lg:w-1/2" label="End  Date" /> -->
 
-          <text-area v-model="form.detail" :error="form.errors.detail" class="pr-6 pb-8 w-full " label="Detail" />
-
+          <text-area v-model="form.detail" :error="form.errors.detail" class="pr-6 pb-8 w-full" label="Detail" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
           <button v-if="!data.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete Project</button>
 
-          <inertia-link tabindex="4"  class="bg-yellow-300 hover:bg-black hover:text-white p-2 ml-auto ml-auto py-3 rounded mr-2" :href="route('projects')"> Back To Projects</inertia-link>
+          <inertia-link tabindex="4" class="bg-yellow-300 hover:bg-black hover:text-white p-2 ml-auto ml-auto py-3 rounded mr-2" :href="route('projects')"> Back To Projects</inertia-link>
 
-          <loading-button :loading="form.processing" class="btn-indigo " type="submit">Update Project</loading-button>
+          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Update Project</loading-button>
         </div>
       </form>
     </div>
@@ -46,7 +41,6 @@ import LoadingButton from '@/Shared/LoadingButton'
 import TrashedMessage from '@/Shared/TrashedMessage'
 import TextArea from '@/Shared/TextareaInput'
 
-
 export default {
   metaInfo() {
     return {
@@ -59,7 +53,7 @@ export default {
     SelectInput,
     TextInput,
     TrashedMessage,
-    TextArea
+    TextArea,
   },
   layout: Layout,
   props: {

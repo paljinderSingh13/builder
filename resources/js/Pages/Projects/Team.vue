@@ -6,8 +6,8 @@
       <div class="col-span-2 p-4 text-center text-2xl">Project Details</div>
       <div class="p-3 border m-1 hover:bg-gray-100 focus-within:bg-gray-100"><label class="w-1/2 inline-block font-black"> Project Name : </label> {{ project.name }}</div>
       <div class="p-3 border m-1 hover:bg-gray-100 focus-within:bg-gray-100 row-span-2"><label class="w-1/2 font-black"> Project detail : </label>{{ project.detail }}</div>
-      <div class="p-3 border m-1 hover:bg-gray-100 focus-within:bg-gray-100"><label class="w-1/2 font-black"> Start Date: </label>{{ project.start_date }}</div>
-      <div class="p-3 border m-1 hover:bg-gray-100 focus-within:bg-gray-100"><label class="w-1/2 inline-block font-black"> End Date : </label>{{ project.end_date }}</div>
+      <!-- <div class="p-3 border m-1 hover:bg-gray-100 focus-within:bg-gray-100"><label class="w-1/2 font-black"> Start Date: </label>{{ project.start_date }}</div>
+      <div class="p-3 border m-1 hover:bg-gray-100 focus-within:bg-gray-100"><label class="w-1/2 inline-block font-black"> End Date : </label>{{ project.end_date }}</div> -->
 
       <div class="p-3 border m-1 hover:bg-gray-100 focus-within:bg-gray-100 row-span-2"><label class="w-1/2 font-black"> Location : </label>{{ project.address }}</div>
     </div>
