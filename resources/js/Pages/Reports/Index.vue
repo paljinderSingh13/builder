@@ -2,8 +2,7 @@
   <div>
     <h1 class="mb-8 font-bold text-3xl">Reports</h1>
 
-    <p></p>
-    <div class="bg-indigo-800 gap-4 grid grid-cols-3 h-24 py-5 rounded-2xl">
+    <div class="bg-indigo-800 gap-4 grid grid-cols-3 h-24 py-5 rounded-2xl shadow-tops">
       <div class="ml-4"><input class="form-input" type="date" v-model="filters.date" @change="filter()" /></div>
       <div>
         <select class="form-select" @change="userType()" v-model="user_type">
@@ -34,10 +33,10 @@
       <div>
         <h3 class="font-light text-center m-12 text-5xl">Managers</h3>
 
-        <div class="grid grid-cols-1 bg-indigo-900">
-          <div class="bg-indigo-800 text-white p-3 m-2" v-for="(item, id) in managerData" :key="id">
+        <div class="grid grid-cols-1 bg-white rounded shadow-tops">
+          <div class="bg-gray-400 text-white p-3 m-2 rounded" v-for="(item, id) in managerData" :key="id">
             <img v-if="item[0]['user']['photo_path']" class="w-10 h-10 rounded-full inline" :src="path + item[0]['user']['photo_path']" alt="" />
-            <img v-else class="w-10 rounded-full inline" :src="path + 'users/dummy-profile.png'" alt="" />
+            <img v-else class="w-10 h-10 rounded-full inline" :src="path + 'users/dummy-profile.png'" alt="" />
             {{ item[0]['user']['first_name'] }} {{ item[0]['user']['last_name'] }}
             <span class="bg-white p-2 mr-2 text-black float-right rounded" v-for="(value, index) in unique_project(item)" :key="index" v-if="value">
               <inertia-link class="inline-block items-center" :href="route('project.team', index)" tabindex="-1">
@@ -61,10 +60,10 @@
       <div>
         <h3 class="font-light text-center m-12 text-5xl">Workers</h3>
 
-        <div class="grid grid-cols-1 bg-indigo-900 rounded">
-          <div class="bg-indigo-800 text-white p-3 m-2 rounded" v-for="(item, id) in workerData" :key="id">
-            <img v-if="item[0]['user']['photo_path']" class="w-10 rounded-full inline" :src="path + item[0]['user']['photo_path']" alt="" />
-            <img v-else class="w-10 rounded-full inline" :src="path + 'users/dummy-profile.png'" alt="" />
+        <div class="grid grid-cols-1 bg-white rounded shadow-tops">
+          <div class="bg-gray-400 text-white p-3 m-2 rounded" v-for="(item, id) in workerData" :key="id">
+            <img v-if="item[0]['user']['photo_path']" class="w-10 h-10 rounded-full inline" :src="path + item[0]['user']['photo_path']" alt="" />
+            <img v-else class="w-10 h-10 rounded-full inline" :src="path + 'users/dummy-profile.png'" alt="" />
 
             {{ item[0]['user']['first_name'] }} {{ item[0]['user']['last_name'] }}
             <span class="bg-white p-2 mr-2 text-black float-right rounded" v-for="(value, index) in unique_project(item)" :key="index" v-if="value">
@@ -194,3 +193,9 @@ export default {
   },
 }
 </script>
+<style >
+.shadow-tops {
+  box-shadow: 0px 0px 10px 4px #c6c7caeb;
+}
+</style>
+

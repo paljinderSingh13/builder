@@ -3,15 +3,15 @@
     <div class="grid grid-cols-2">
       <h1 class="mb-8 font-bold text-3xl">Projects</h1>
       <div class="mb-6 flex items-center justify-end">
-        <inertia-link class="btn-indigo" :href="route('project.create')">
+        <inertia-link class="bg-gray-500 p-3 text-white rounded" :href="route('project.create')">
           <span>Add Project</span>
         </inertia-link>
       </div>
     </div>
 
-    <div class="bg-white rounded-md shadow overflow-x-auto">
+    <div class="bg-white rounded shadow-tops overflow-x-auto">
       <table class="w-full whitespace-nowrap">
-        <tr class="text-left font-bold">
+        <tr class="text-left font-bold bg-gray-100">
           <th class="px-6 pt-6 pb-4">Project Name</th>
           <th class="px-6 pt-6 pb-4">Location</th>
           <!-- <th class="px-6 pt-6 pb-4">End Date</th> -->
@@ -75,3 +75,8 @@ export default {
   },
 }
 </script>
+<style >
+.shadow-tops {
+  box-shadow: 0px 0px 10px 4px #c6c7caeb;
+}
+</style>

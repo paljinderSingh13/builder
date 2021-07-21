@@ -1,60 +1,59 @@
 <template>
-  <div>
+  <div class="shadow-2xl">
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('dashboard')">
-        <icon name="dashboard" class="w-4 h-4 mr-2" :class="isUrl('') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Dashboard</div>
+        <icon name="dashboard" class="w-4 h-4 mr-2" :class="isUrl('') ? 'fill-gray-800' : 'fill-gray-500 group-hover:fill-gray-800'" />
+        <div :class="isUrl('') ? 'text-gray-800' : 'text-indigo-300 group-hover:text-gray-800'">Dashboard</div>
       </inertia-link>
     </div>
 
     <div class="mb-4">
-      <inertia-link class="flex items-center group py-3" :href="route('staff','manager')">
-        <icon name="office" class="w-4 h-4 mr-2" :class="isUrl('staff-manager') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('staff-manager') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Managers</div>
+      <inertia-link class="flex items-center group py-3" :href="route('staff', 'manager')">
+        <icon name="office" class="w-4 h-4 mr-2" :class="isUrl('staff-manager') ? 'fill-gray-800' : 'fill-gray-500 group-hover:fill-gray-800'" />
+        <div :class="isUrl('staff-manager') ? 'text-gray-800' : 'text-indigo-300 group-hover:text-gray-800'">Managers</div>
       </inertia-link>
     </div>
 
     <div class="mb-4">
-      <inertia-link class="flex items-center group py-3" :href="route('staff','worker')">
-        <icon name="workers" class="w-4 h-4 mr-2" :class="isUrl('staff-manager') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+      <inertia-link class="flex items-center group py-3" :href="route('staff', 'worker')">
+        <icon name="workers" class="w-4 h-4 mr-2" :class="isUrl('staff-manager') ? 'fill-gray-800' : 'fill-gray-500 group-hover:fill-gray-800'" />
 
-        <div :class="isUrl('staff-worker') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Workers</div>
+        <div :class="isUrl('staff-worker') ? 'text-gray-800' : 'text-indigo-300 group-hover:text-gray-800'">Workers</div>
       </inertia-link>
     </div>
 
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('projects')">
-        <icon name="project" class="w-4 h-4 mr-2" :class="isUrl('projects') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('projects') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Projects</div>
+        <icon name="project" class="w-4 h-4 mr-2" :class="isUrl('projects') ? 'fill-gray-800' : 'fill-gray-500 group-hover:fill-gray-800'" />
+        <div :class="isUrl('projects') ? 'text-gray-800' : 'text-indigo-300 group-hover:text-gray-800'">Projects</div>
       </inertia-link>
     </div>
 
     <!-- <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('organizations')">
-        <icon name="office" class="w-4 h-4 mr-2" :class="isUrl('organizations') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('organizations') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Organizations</div>
+        <icon name="office" class="w-4 h-4 mr-2" :class="isUrl('organizations') ? 'fill-gray-800' : 'fill-gray-500 group-hover:fill-gray-800'" />
+        <div :class="isUrl('organizations') ? 'text-gray-800' : 'text-indigo-300 group-hover:text-gray-800'">Organizations</div>
       </inertia-link>
     </div>
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('contacts')">
-        <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('contacts') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('contacts') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Contacts</div>
+        <icon name="users" class="w-4 h-4 mr-2" :class="isUrl('contacts') ? 'fill-gray-800' : 'fill-gray-500 group-hover:fill-gray-800'" />
+        <div :class="isUrl('contacts') ? 'text-gray-800' : 'text-indigo-300 group-hover:text-gray-800'">Contacts</div>
       </inertia-link>
     </div> -->
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('reports')">
-        <icon name="calendar" class="w-4 h-4 mr-2" :class="isUrl('reports') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('reports') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Date Reports</div>
+        <icon name="calendar" class="w-4 h-4 mr-2" :class="isUrl('reports') ? 'fill-gray-800' : 'fill-gray-500 group-hover:fill-gray-800'" />
+        <div :class="isUrl('reports') ? 'text-gray-800' : 'text-indigo-300 group-hover:text-gray-800'">Date Reports</div>
       </inertia-link>
     </div>
 
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('project.wise.report')">
-        <icon name="report" class="w-4 h-4 mr-2" :class="isUrl('project-report') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('project-report') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Project Report</div>
+        <icon name="report" class="w-4 h-4 mr-2" :class="isUrl('project-report') ? 'fill-gray-800' : 'fill-gray-500 group-hover:fill-gray-800'" />
+        <div :class="isUrl('project-report') ? 'text-gray-800' : 'text-indigo-300 group-hover:text-gray-800'">Project Report</div>
       </inertia-link>
     </div>
-
   </div>
 </template>
 
@@ -71,7 +70,7 @@ export default {
       if (urls[0] === '') {
         return currentUrl === ''
       }
-      return urls.filter(url => currentUrl.startsWith(url)).length
+      return urls.filter((url) => currentUrl.startsWith(url)).length
     },
   },
 }

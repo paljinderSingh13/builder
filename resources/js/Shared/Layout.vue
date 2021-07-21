@@ -3,7 +3,7 @@
     <portal-target name="dropdown" slim />
     <div class="md:flex md:flex-col">
       <div class="md:h-screen md:flex md:flex-col">
-        <div class="md:flex md:flex-shrink-0">
+        <div class="md:flex md:flex-shrink-0 shadow-md">
           <!-- <div class="bg-white md:flex-shrink-0 md:w-56 px-6 py-4 flex items-center justify-between md:justify-center"> -->
           <div class="bg-white flex items-center justify-between md:flex-shrink-0 md:justify-center md:w-56">
             <inertia-link class="" :href="route('dashboard')">
@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div class="fa-1x grid grid-cols-2 font-thin bg-indigo-800 p-2 text-white">
+    <div class="fa-1x grid grid-cols-2 font-thin bg-white shadow-tops p-2">
       <div>All Rights Reserved by Gibbs Group.</div>
       <div class="text-right">Design & Developed By : Stealth Media Ltd.</div>
     </div>
@@ -67,3 +67,8 @@ export default {
   },
 }
 </script>
+<style>
+.shadow-tops {
+  box-shadow: 0px 0px 10px 4px #c6c7caeb;
+}
+</style>

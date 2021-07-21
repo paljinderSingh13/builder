@@ -2,7 +2,7 @@
   <div>
     <div class="mb-8 flex justify-start max-w-3xl">
       <h1 class="font-bold text-3xl">
-        <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('projects')">Projects</inertia-link>
+        <inertia-link class="text-gray-500 hover:text-gray-600" :href="route('projects')">Projects</inertia-link>
       </h1>
     </div>
 
@@ -19,7 +19,7 @@
           <text-area v-model="form.detail" :error="form.errors.detail" class="pr-6 pb-8 w-full" label="Detail" />
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
-          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Add Project</loading-button>
+          <loading-button :loading="form.processing" class="bg-gray-500 p-3 rounded text-white" type="submit">Add Project</loading-button>
         </div>
       </form>
     </div>

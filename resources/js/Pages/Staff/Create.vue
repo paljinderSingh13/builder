@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1 class="mb-8 font-bold text-3xl capitalize">
-      <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('staff',type)">Staff</inertia-link>
-      <span class="text-indigo-400 font-medium ">/</span> Add {{ type }}
+      <inertia-link class="text-gray-400 hover:text-gray-600" :href="route('staff', type)">Staff</inertia-link>
+      <span class="text-gray-400 font-medium">/</span> Add {{ type }}
     </h1>
     <div class="bg-white rounded-md shadow overflow-hidden max-w-full">
       <form @submit.prevent="store">
@@ -16,7 +16,7 @@
           <text-input v-model="form.mobile" :error="form.errors.mobile" class="pr-6 pb-8 w-full lg:w-1/2" label="Mobile * " />
           <text-input v-model="form.emergency_contact" :error="form.errors.emergency_contact" class="pr-6 pb-8 w-full lg:w-1/2" label="Emergency Contact Number" />
 
-          <text-input type='date' v-model="form.date_of_joining" :error="form.errors.date_of_joining" class="pr-6 pb-8 w-full lg:w-1/2" label="Date Of Joining" />
+          <text-input type="date" v-model="form.date_of_joining" :error="form.errors.date_of_joining" class="pr-6 pb-8 w-full lg:w-1/2" label="Date Of Joining" />
           <text-input v-model="form.expertise" :error="form.errors.expertise" class="pr-6 pb-8 w-full lg:w-1/2" label="Expertise" />
 
           <text-input v-model="form.address" :error="form.errors.address" class="pr-6 pb-8 w-full" label="Address" />
@@ -24,21 +24,13 @@
           <text-input v-model="form.email" :error="form.errors.email" class="pr-6 pb-8 w-full lg:w-1/2" label="Email * " />
           <text-input v-model="form.password" :error="form.errors.password" class="pr-6 pb-8 w-full lg:w-1/2" type="password" autocomplete="new-password" label="Password * " />
 
-
-
-
-
-
-
           <!-- <select-input v-model="form.owner" :error="form.errors.owner" class="pr-6 pb-8 w-full lg:w-1/2" label="Owner">
             <option :value="true">Yes</option>
             <option :value="false">No</option>
           </select-input> -->
-
-
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
-          <loading-button :loading="form.processing" class="btn-indigo capitalize" type="submit">Add {{type}}</loading-button>
+          <loading-button :loading="form.processing" class="bg-gray-500 text-white rounded p-3 capitalize" type="submit">Add {{ type }}</loading-button>
         </div>
       </form>
     </div>
@@ -56,7 +48,7 @@ import LoadingButton from '@/Shared/LoadingButton'
 
 export default {
   metaInfo: { title: 'Create ' },
-  props:{type:String},
+  props: { type: String },
   components: {
     FileInput,
     LoadingButton,
@@ -75,13 +67,13 @@ export default {
         owner: false,
         photo: null,
         mobile: null,
-        address:null,
-        mobile:null,
-        employee_id:null,
-        expertise:null,
-        emergency_contact:null,
-        user_type:this.type,
-        date_of_joining:null
+        address: null,
+        mobile: null,
+        employee_id: null,
+        expertise: null,
+        emergency_contact: null,
+        user_type: this.type,
+        date_of_joining: null,
       }),
     }
   },

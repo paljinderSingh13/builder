@@ -1,9 +1,9 @@
 <template>
-  <div class="p-6 bg-indigo-800 min-h-screen flex justify-center items-center">
+  <div class="p-6 bg-gray-100 min-h-screen flex justify-center items-center">
     <div class="w-full max-w-md">
       <form class="mt-8 bg-white rounded-lg shadow-xl overflow-hidden" @submit.prevent="login">
         <div class="px-10 pt-8 pb-12">
-                <logo class="fill-white flex h-24 mx-auto w-48 mb-4" height="50" />
+          <logo class="fill-white flex h-24 mx-auto w-48 mb-4" height="50" />
 
           <h1 class="text-center font-bold text-2xl">Welcome Back!</h1>
           <div class="mx-auto mt-6 w-24 border-b-2" />
@@ -15,7 +15,7 @@
           </label>
         </div>
         <div class="px-10 py-4 bg-gray-100 border-t border-gray-100 flex">
-          <loading-button :loading="form.processing" class="ml-auto btn-indigo" type="submit">Login</loading-button>
+          <loading-button :loading="form.processing" class="ml-auto bg-gray-500 p-3 rounded text-white" type="submit">Login</loading-button>
         </div>
       </form>
     </div>

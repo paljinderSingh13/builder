@@ -2,15 +2,13 @@
   <div>
     <div class="mb-8 flex justify-start max-w-3xl">
       <h1 class="font-bold text-3xl">
-        <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('staff',[user.user_type])">{{user.user_type.toUpperCase()}}</inertia-link>
-        <span class="text-indigo-400 font-medium">/</span>
-          {{ form.first_name }} {{ form.last_name }}
+        <inertia-link class="text-gray-400 hover:text-gray-600" :href="route('staff', [user.user_type])">{{ user.user_type.toUpperCase() }}</inertia-link>
+        <span class="text-gray-600 font-medium">/</span>
+        {{ form.first_name }} {{ form.last_name }}
       </h1>
       <img v-if="user.photo" class="block w-8 h-8 rounded-full ml-4" :src="user.photo" />
     </div>
-    <trashed-message v-if="user.deleted_at" class="mb-6" @restore="restore">
-      This user has been deleted.
-    </trashed-message>
+    <trashed-message v-if="user.deleted_at" class="mb-6" @restore="restore"> This {{ user.user_type.toUpperCase() }} has been deleted. </trashed-message>
     <div class="bg-white rounded-md shadow overflow-hidden max-w-full">
       <form @submit.prevent="update">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
@@ -23,11 +21,10 @@
           <text-input v-model="form.mobile" :error="form.errors.mobile" class="pr-6 pb-8 w-full lg:w-1/2" label="Mobile" />
           <text-input v-model="form.emergency_contact" :error="form.errors.emergency_contact" class="pr-6 pb-8 w-full lg:w-1/2" label="Emergency Contact Detail" />
 
-          <text-input type='date' v-model="form.date_of_joining" :error="form.errors.date_of_joining" class="pr-6 pb-8 w-full lg:w-1/2" label="Date Of Joining" />
+          <text-input type="date" v-model="form.date_of_joining" :error="form.errors.date_of_joining" class="pr-6 pb-8 w-full lg:w-1/2" label="Date Of Joining" />
           <text-input v-model="form.expertise" :error="form.errors.expertise" class="pr-6 pb-8 w-full lg:w-1/2" label="Expertise" />
 
           <text-input v-model="form.address" :error="form.errors.address" class="pr-6 pb-8 w-full" label="Address" />
-
 
           <text-input v-model="form.email" :error="form.errors.email" class="pr-6 pb-8 w-full lg:w-1/2" label="Email" />
           <!-- <text-input v-model="form.password" :error="form.errors.password" class="pr-6 pb-8 w-full lg:w-1/2" type="password" autocomplete="new-password" label="Password" /> -->
@@ -37,8 +34,8 @@
           </select-input> -->
         </div>
         <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex items-center">
-          <button v-if="!user.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete {{user.user_type}}</button>
-          <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Update {{user.user_type}}</loading-button>
+          <button v-if="!user.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete {{ user.user_type }}</button>
+          <loading-button :loading="form.processing" class="p-3 bg-gray-500 text-white rounded ml-auto" type="submit">Update {{ user.user_type }}</loading-button>
         </div>
       </form>
     </div>
@@ -82,11 +79,11 @@ export default {
         // owner: this.user.owner,
         photo: null,
         mobile: this.user.mobile,
-        address:this.user.address,
-        employee_id:this.user.employee_id,
-        expertise:this.user.expertise,
-        emergency_contact:this.user.emergency_contact,
-        date_of_joining:this.user.date_of_joining
+        address: this.user.address,
+        employee_id: this.user.employee_id,
+        expertise: this.user.expertise,
+        emergency_contact: this.user.emergency_contact,
+        date_of_joining: this.user.date_of_joining,
       }),
     }
   },

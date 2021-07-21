@@ -2,12 +2,12 @@
   <div>
     <div class="mb-8 flex justify-start max-w-3xl">
       <h1 class="font-bold text-3xl">
-        <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('projects')">Projects</inertia-link>
+        <inertia-link class="text-gray-500 hover:text-gray-600" :href="route('projects')">Projects</inertia-link>
         <span class="text-indigo-400 font-medium">/</span>
         {{ form.name }}
       </h1>
     </div>
-    <trashed-message v-if="data.deleted_at" class="mb-6" @restore="restore"> This project has been deleted. </trashed-message>
+    <trashed-message v-if="data.deleted_at" class="mb-6" @restore="restore"> This Project has been deleted. </trashed-message>
     <div class="bg-white rounded-md shadow overflow-hidden max-w-full">
       <form @submit.prevent="update">
         <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
@@ -25,7 +25,7 @@
 
           <inertia-link tabindex="4" class="bg-yellow-300 hover:bg-black hover:text-white p-2 ml-auto ml-auto py-3 rounded mr-2" :href="route('projects')"> Back To Projects</inertia-link>
 
-          <loading-button :loading="form.processing" class="btn-indigo" type="submit">Update Project</loading-button>
+          <loading-button :loading="form.processing" class="bg-gray-500 text-white rounded p-3" type="submit">Update Project</loading-button>
         </div>
       </form>
     </div>
