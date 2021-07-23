@@ -2,7 +2,37 @@
   <div>
     <h1 class="mb-8 font-bold text-3xl">Dashboard</h1>
 
-    <div class="shadow-tops rounded">
+    <div class="grid grid-cols-2 border bg-white shadow-tops rounded my-8" v-for="project in projects" :key="project.id">
+      <div class="col-span-2 p-4 text-center text-2xl bg-gray-100 capitalize">{{ project.name }}</div>
+      <div class="p-4 border m-0 hover:bg-gray-100 focus-within:bg-gray-100"><label class="w-1/2 inline-block font-black"> Project Name : </label> {{ project.name }}</div>
+      <div class="p-4 border m-0 hover:bg-gray-100 focus-within:bg-gray-100 row-span-3"><label class="w-1/2 font-black"> Project detail : </label>{{ project.detail }}</div>
+
+      <!-- <div class="p-4 border m-0 hover:bg-gray-100 focus-within:bg-gray-100"><label class="w-1/2 font-black"> Start Date: </label>{{ project.start_date }}</div>
+      <div class="p-4 border m-0 hover:bg-gray-100 focus-within:bg-gray-100"><label class="w-1/2 inline-block font-black"> End Date : </label>{{ project.end_date }}</div> -->
+      <div class="p-4 border m-0 hover:bg-gray-100 focus-within:bg-gray-100 row-span-2"><label class="w-1/2 font-black"> Location : </label>{{ project.address }}</div>
+      <div>
+        <h3 class="m-4 fa-2x font-thin p-2 text-center mt-10">Managers</h3>
+        <div class="grid gap-2 grid-cols-1 bg-white rounded shadow-tops mb-5 mx-5">
+          <div class="bg-gray-300 rounded m-2 p-4 h-20" v-for="emp in staff_group_by(project.employee, 'manager')" :key="emp.id">
+            <img v-if="emp.photo_path" class="w-10 rounded-full inline" :src="path + emp.photo_path" alt="" />
+            <img v-else class="w-10 rounded-full inline" :src="path + 'users/dummy-profile.png'" alt="" />
+            {{ emp.first_name }} {{ emp.last_name }}
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="m-4 fa-2x font-thin p-2 text-center mt-10">Workers</h3>
+        <div class="grid gap-2 grid-cols-1 bg-white rounded shadow-tops mb-5 mx-5">
+          <div class="bg-gray-300 rounded m-2 p-4 h-20" v-for="emp in staff_group_by(project.employee, 'worker')" :key="emp.id">
+            <img v-if="emp.photo_path" class="w-10 rounded-full inline" :src="path + emp.photo_path" alt="" />
+            <img v-else class="w-10 rounded-full inline" :src="path + 'users/dummy-profile.png'" alt="" />
+            {{ emp.first_name }} {{ emp.last_name }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="shadow-tops rounded">
       <div class="grid grid-cols-2 bg-indigo-800 text-gray-600 rounded-t-lg">
         <h1 class="p-3 font-light text-2xl">Latest Projects</h1>
         <inertia-link class="py-4 text-right mr-4 font-light text-xl" :href="route('projects')"> All Projects ({{ data.project_count }}) </inertia-link>
@@ -34,9 +64,9 @@
           </tr>
         </table>
       </div>
-    </div>
+    </div> -->
 
-    <div class="grid grid-cols-2 gap-4 mt-12">
+    <!-- <div class="grid grid-cols-2 gap-4 mt-12">
       <div class="shadow-tops rounded">
         <div class="grid grid-cols-1 bg-indigo-800 rounded-t">
           <div class="font-light text-xl p-3">
@@ -57,7 +87,6 @@
             <div class="capitalize font-light inline-block ml-2 fa-1x inline-block">{{ staff.first_name }} {{ staff.last_name }}</div>
           </div>
           <div class="fa-1x font-light mt-5 text-center">{{ staff.mobile }}</div>
-          <!-- <div></div> -->
         </div>
       </div>
       <div class="shadow-tops rounded">
@@ -81,7 +110,7 @@
           <div class="fa-1x font-light mt-5 text-center">{{ staff.mobile }}</div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -93,11 +122,17 @@ export default {
   layout: Layout,
   props: {
     data: Object,
+    projects: Array,
   },
   data() {
     return {
       path: '/pingcrm/public/img/',
     }
+  },
+  methods: {
+    staff_group_by(data, type) {
+      return data.filter((row) => row.user_type == type)
+    },
   },
 }
 </script>

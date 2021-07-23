@@ -14,6 +14,13 @@ class Project extends Model
 
     protected $fillable =['name', 'detail', 'address', 'start_date', 'end_date', 'status'];
 
+//
+    public function employee(){
+
+        return $this->belongsToMany(User::class)
+                        ->wherePivot('end',null);
+    }
+
     public function users(){
 
         return $this->belongsToMany(User::class)

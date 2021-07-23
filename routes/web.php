@@ -48,10 +48,15 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 // Users
 Route::group(['middleware'=>'auth'],function(){
 
+
+
     Route::get('staff-{type?}',[UsersController::class,'staff'])->name('staff');
     Route::get('create-{type}',[UsersController::class,'staff_create'])->name('staff.create');
 
     Route::get('staff-{type}/{user}',[UsersController::class,'detail'])->name('detail');
+//status
+Route::get('status',[UsersController::class,'status'])->name('status');
+
 
 //project
     Route::get('projects',[ProjectController::class,'index'])->name('projects');

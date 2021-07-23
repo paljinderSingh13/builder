@@ -18,7 +18,8 @@ class UsersController extends Controller
 
 public function staff($type){
 
-    $staff = User::select(['id', 'first_name', 'last_name', 'email', 'photo_path', 'address', 'mobile', 'employee_id', 'expertise', 'emergency_contact', 'user_type', 'date_of_joining'])->whereUserType($type)
+    $staff = User::select(['id', 'first_name', 'last_name', 'email', 'photo_path', 'address', 'mobile', 'employee_id', 'expertise', 'emergency_contact', 'user_type', 'date_of_joining'])
+            ->whereUserType($type)
             ->orderBy('id','desc')
             ->with('staff_availablity:id')
             ->get();
@@ -33,6 +34,19 @@ public function staff($type){
             //             'deleted_at' => $user->deleted_at]
             //         );
     return Inertia::render('Staff/Index',['data'=>$staff,'user_type'=>$type]);
+
+}
+
+public function status(){
+
+    $user = User::select(['id', 'first_name', 'last_name', 'email', 'photo_path', 'mobile',  'user_type'])
+            ->whereIn('user_type',['manager','worker'])
+            ->withCount('staff_availablity')
+            ->get()
+            ->groupBy('user_type');
+           //dd($user->toArray());
+
+    return Inertia::render('Staff/Status',['data'=>$user]);
 
 }
 

@@ -5,7 +5,7 @@
         <div class="px-10 pt-8 pb-12">
           <logo class="fill-white flex h-24 mx-auto w-48 mb-4" height="50" />
 
-          <h1 class="text-center font-bold text-2xl">Welcome Back!</h1>
+          <!-- <h1 class="text-center font-bold text-2xl">Welcome Back!</h1> -->
           <div class="mx-auto mt-6 w-24 border-b-2" />
           <text-input v-model="form.email" :error="form.errors.email" class="mt-10" label="Email" type="email" autofocus autocapitalize="off" />
           <text-input v-model="form.password" :error="form.errors.password" class="mt-6" label="Password" type="password" />
