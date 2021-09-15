@@ -10,7 +10,7 @@
 export default {
   data() {
     return {
-      path: '/pingcrm/public/',
+      path: '/public/',
     }
   },
 }

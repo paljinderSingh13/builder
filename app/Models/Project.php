@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Project extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+   // use SoftDeletes;
 
     protected $fillable =['name', 'detail', 'address', 'start_date', 'end_date', 'status'];
 
@@ -35,7 +35,11 @@ class Project extends Model
                     ->wherePivot('end',null);
     }
 
+    public function staff_project_wise(){//use for project wise report
 
+        return $this->belongsToMany(User::class)
+                    ->withPivot('start','end');
+    }
 
     public function user_relation(){
 

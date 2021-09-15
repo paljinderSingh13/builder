@@ -126,7 +126,7 @@ export default {
   },
   data() {
     return {
-      path: '/pingcrm/public/img/',
+      path: '/public/img/',
     }
   },
   methods: {

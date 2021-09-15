@@ -1,12 +1,18 @@
 <template>
-  <div class="shadow-2xl black_bg">
+  <div class="shadow-2xl black_bg" v-if="$page.props.auth.user.user_type != 'worker'">
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('dashboard')">
-        <icon name="dashboard" class="w-4 h-4 mr-2" :class="isUrl('') ? 'fill-gray-400' : 'fill-white group-hover:fill-gray-400'" />
-        <div :class="isUrl('') ? 'text-gray-400' : 'text-white group-hover:text-gray-400'">Dashboard</div>
+        <icon name="dashboard" class="w-4 h-4 mr-2" :class="isUrl('dashboard') ? 'fill-gray-400' : 'fill-white group-hover:fill-gray-400'" />
+        <div :class="isUrl('dashboard') ? 'text-gray-400' : 'text-white group-hover:text-gray-400'">Dashboard</div>
       </inertia-link>
     </div>
 
+    <div class="mb-4">
+      <inertia-link class="flex items-center group py-3" :href="route('reports')">
+        <icon name="calendar" class="w-4 h-4 mr-2" :class="isUrl('reports') ? 'fill-gray-400' : 'fill-white group-hover:fill-gray-400'" />
+        <div :class="isUrl('reports') ? 'text-gray-400' : 'text-white group-hover:text-gray-400'">Job Calendar</div>
+      </inertia-link>
+    </div>
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('status')">
         <icon name="status" class="w-4 h-4 mr-2" :class="isUrl('status') ? 'fill-gray-400' : 'fill-white group-hover:fill-gray-400'" />
@@ -48,17 +54,25 @@
         <div  :class="isUrl('contacts') ? 'text-gray-400' : 'text-white group-hover:text-gray-400'">Contacts</div>
       </inertia-link>
     </div> -->
-    <div class="mb-4">
-      <inertia-link class="flex items-center group py-3" :href="route('reports')">
-        <icon name="calendar" class="w-4 h-4 mr-2" :class="isUrl('reports') ? 'fill-gray-400' : 'fill-white group-hover:fill-gray-400'" />
-        <div :class="isUrl('reports') ? 'text-gray-400' : 'text-white group-hover:text-gray-400'">Date Reports</div>
-      </inertia-link>
-    </div>
 
     <div class="mb-4">
       <inertia-link class="flex items-center group py-3" :href="route('project.wise.report')">
         <icon name="report" class="w-4 h-4 mr-2" :class="isUrl('project-report') ? 'fill-gray-400' : 'fill-white group-hover:fill-gray-400'" />
         <div :class="isUrl('project-report') ? 'text-gray-400' : 'text-white group-hover:text-gray-400'">Project Report</div>
+      </inertia-link>
+    </div>
+    <div class="mb-4" v-if="$page.props.auth.user.user_type != 'admin'">
+      <inertia-link class="flex items-center group py-3" :href="route('work.log')">
+        <icon name="calendar" class="w-4 h-4 mr-2" :class="isUrl('work-log') ? 'fill-gray-400' : 'fill-white group-hover:fill-gray-400'" />
+        <div :class="isUrl('work-log') ? 'text-gray-400' : 'text-white group-hover:text-gray-400'">Work Log</div>
+      </inertia-link>
+    </div>
+  </div>
+  <div class="shadow-2xl black_bg" v-else>
+    <div class="mb-4">
+      <inertia-link class="flex items-center group py-3" :href="route('work.log')">
+        <icon name="calendar" class="w-4 h-4 mr-2" :class="isUrl('work-log') ? 'fill-gray-400' : 'fill-white group-hover:fill-gray-400'" />
+        <div :class="isUrl('work-log') ? 'text-gray-400' : 'text-white group-hover:text-gray-400'">Work Log</div>
       </inertia-link>
     </div>
   </div>

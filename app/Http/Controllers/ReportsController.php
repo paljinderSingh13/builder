@@ -7,8 +7,29 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Inertia\Inertia;
+use Auth;
 class ReportsController extends Controller
 {
+
+    public function work_log(){
+
+         $user = Auth::user();
+
+        if($user->user_type !='admin'){
+            $logs = ProjectUser::whereUserId($user->id)->get();//->groupBy('project_id');
+            $pid =  $logs->pluck('project_id')->unique();
+            $projects = Project::whereIn('id',$pid)->pluck('name','id');
+            // if($user->user_type =='manager'){
+                return Inertia::render('Reports/WorkLog',['logs'=>$logs->groupBy('project_id'),'projects'=> $projects ] );
+            // }else{
+            //     return Inertia::render('Reports/WorkerLog',['logs'=>$logs->groupBy('project_id'),'projects'=> $projects ] );
+            // }
+        }else{
+            return Inertia::render('Reports/Norecord');
+        }
+    }
+
+
     public function index(Request $request)
     {
         if($request->isMethod('post')){
@@ -64,7 +85,7 @@ class ReportsController extends Controller
 
     public function project_wise_report($project_id=NULL){
 
-       // dd($project_id)
+
        if($project_id=="null" or empty($project_id)){
 
 
@@ -72,8 +93,10 @@ class ReportsController extends Controller
        }
        else if(!empty($project_id)){
 
-            $data = Project::whereId($project_id)->with('staff:id,first_name,last_name,photo_path,user_type')->first();
-            $staff = $data->staff->groupBy(['user_type','id']);
+            $data = Project::whereId($project_id)->with('staff_project_wise:id,first_name,last_name,photo_path,user_type')->first();
+           // dd($data);
+
+            $staff = $data->staff_project_wise->groupBy(['user_type','id']);
        }
        $project = Project::pluck('name','id');
 

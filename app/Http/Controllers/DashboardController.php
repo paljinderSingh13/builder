@@ -9,12 +9,15 @@ use Illuminate\Database\Eloquent\Builder;
 
 
 use Inertia\Inertia;
+use Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-
+        if(Auth::user()->user_type =='worker'){
+            return redirect()->route('work.log');
+        }
        $project =  Project::whereStatus(1)
                     ->has('employee')
                     ->with('employee:id,first_name,last_name,user_type,photo_path')
@@ -24,7 +27,7 @@ class DashboardController extends Controller
         // $manager = User::select(['id','first_name','last_name','photo_path','email','mobile'])->where('user_type','manager');
         // $data['project_count'] = Project::count();
         // $data['project_data'] = Project::select(['id','name','address','start_date','end_date','status'])
-        // //->with('user')
+        // //->with('user') Tanisha@22B><
         // ->withCount(['staff as worker_count'=>function(Builder $query){
         //     $query->where('user_type','worker');
         // }, 'staff as manager_count'=>function(Builder $query){

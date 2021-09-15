@@ -28,6 +28,13 @@ Route::get('test',function(){
     dump('helloooo');
 });
 
+Route::get('/',function(){
+
+    return redirect()->route('login');
+})
+    ->name('login')
+    ->middleware('guest');
+
 Route::get('login', [AuthenticatedSessionController::class, 'create'])
     ->name('login')
     ->middleware('guest');
@@ -48,7 +55,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 // Users
 Route::group(['middleware'=>'auth'],function(){
 
-
+Route::get('work-log', [ReportsController::class,'work_log'])->name('work.log');
 
     Route::get('staff-{type?}',[UsersController::class,'staff'])->name('staff');
     Route::get('create-{type}',[UsersController::class,'staff_create'])->name('staff.create');

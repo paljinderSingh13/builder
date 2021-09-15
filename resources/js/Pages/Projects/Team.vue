@@ -73,7 +73,7 @@ export default {
   },
   data() {
     return {
-      path: '/pingcrm/public/img/',
+      path: '/public/img/',
       teams: [],
       include_team: [12, 13],
       all_occupied: true,

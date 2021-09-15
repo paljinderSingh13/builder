@@ -24,7 +24,7 @@
       <div v-for="(row, index) in val" :key="index" class="shadow-tops rounded">
         <h3 class="p-2 bg-gray-400 rounded-t">
           <img v-if="row[0].photo_path" class="w-10 h-10 rounded-full inline" :src="path + row[0].photo_path" alt="" />
-          <img v-else class="w-10 h-10 rounded-full inline" :src="path + 'dummy-profile.png'" alt="" />
+          <img v-else class="w-10 h-10 rounded-full inline" :src="path + 'users/dummy-profile.png'" alt="" />
 
           {{ row[0].first_name }} {{ row[0].last_name }}
         </h3>
@@ -58,7 +58,7 @@ export default {
   },
   data() {
     return {
-      path: '/pingcrm/public/img/',
+      path: '/public/img/',
       project_id: this.data.id ? this.data.id : null,
       moment_data: moment().format('MMMM Do YYYY, h:mm:ss a'),
     }

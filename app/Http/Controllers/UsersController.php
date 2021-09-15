@@ -18,6 +18,7 @@ class UsersController extends Controller
 
 public function staff($type){
 
+    $auth_type = Auth::user()->user_type;
     $staff = User::select(['id', 'first_name', 'last_name', 'email', 'photo_path', 'address', 'mobile', 'employee_id', 'expertise', 'emergency_contact', 'user_type', 'date_of_joining'])
             ->whereUserType($type)
             ->orderBy('id','desc')
@@ -33,7 +34,7 @@ public function staff($type){
             //             'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 80, 'h' => 80, 'fit' => 'crop']) : null,
             //             'deleted_at' => $user->deleted_at]
             //         );
-    return Inertia::render('Staff/Index',['data'=>$staff,'user_type'=>$type]);
+    return Inertia::render('Staff/Index',['data'=>$staff,'user_type'=>$type,'auth_type'=>$auth_type]);
 
 }
 
@@ -191,10 +192,13 @@ public function status(){
         if (App::environment('demo') && $user->isDemoUser()) {
             return Redirect::back()->with('error', 'Deleting the demo user is not allowed.');
         }
-
+        $user_type = $user->user_type;
         $user->delete();
 
-        return Redirect::back()->with('success', 'User deleted.');
+        return Redirect::route('staff',$user_type)->with('success', $user_type.' Deleted Successfully.');
+
+
+        //return Redirect::back()->with('success', 'User deleted.');
     }
 
     public function restore(User $user)

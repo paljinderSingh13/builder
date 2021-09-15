@@ -13,7 +13,6 @@ Vue.use(VueMeta)
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-
 InertiaProgress.init()
 
 const el = document.getElementById('app')

@@ -90,7 +90,7 @@ export default {
   },
   data() {
     return {
-      path: '/pingcrm/public/img/',
+      path: '/public/img/',
 
       filters: { date: this.date },
       user_type: 'all',

@@ -6,7 +6,7 @@
       </div>
 
       <div class="mb-6 text-right mr-8 justify-between items-center">
-        <inertia-link class="bg-gray-600 p-3 text-white rounded" :href="route('staff.create', user_type)">
+        <inertia-link v-if="auth_type == 'admin'" class="bg-gray-600 p-3 text-white rounded" :href="route('staff.create', user_type)">
           <span>Add</span>
           <span class="hidden md:inline capitalize">{{ user_type }}</span>
         </inertia-link>
@@ -33,7 +33,7 @@
           <td class="border-t">{{ row.email }}</td>
           <td class="border-t">{{ row.mobile }}</td>
           <td class="border-t">
-            <inertia-link class="inline-block bg-gray-600 text-white rounded p-2 hover:bg-black hover:text-white" :href="route('users.edit', row.id)" tabindex="-1">
+            <inertia-link v-if="auth_type == 'admin'" class="inline-block bg-gray-600 text-white rounded p-2 hover:bg-black hover:text-white" :href="route('users.edit', row.id)" tabindex="-1">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
@@ -61,10 +61,11 @@ export default {
   props: {
     data: Array,
     user_type: String,
+    auth_type: String,
   },
   data() {
     return {
-      path: '/pingcrm/public/img/',
+      path: '/public/img/',
     }
   },
 }

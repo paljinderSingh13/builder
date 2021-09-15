@@ -11,16 +11,17 @@ use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
 
 use Inertia\Inertia;
+use Auth;
 
 
 class ProjectController extends Controller
 {
 
+
     public function index(){
-
+        $user_type = Auth::user()->user_type;
         $data = Project::all();
-        return Inertia::render('Projects/Index',['data'=>$data->toArray()]);
-
+        return Inertia::render('Projects/Index',['data'=>$data->toArray(),'user_type'=>$user_type]);
     }
 
     public function create(){
@@ -43,7 +44,7 @@ class ProjectController extends Controller
 
     public function edit($id){
 
-        $project = Project::where('id',$id)->withTrashed()->first();
+        $project = Project::where('id',$id)->first();
         $data = $project->toArray();
        return Inertia::render('Projects/Edit',['data'=>$data]);
     }
@@ -63,7 +64,10 @@ class ProjectController extends Controller
 
         $project->delete();
 
-        return Redirect::back()->with('success', 'Project Deleted Successfully.');
+        return Redirect::route('projects')->with('success', 'Project Deleted Successful.');
+
+
+        //return Redirect::back()->with('success', 'Project Deleted Successfully.');
 
     }
 

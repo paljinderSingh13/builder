@@ -72,6 +72,7 @@ export default {
   layout: Layout,
   props: {
     data: Array,
+    user_type: String,
   },
 }
 </script>

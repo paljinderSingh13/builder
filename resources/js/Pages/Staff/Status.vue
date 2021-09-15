@@ -5,11 +5,13 @@
       <div class="shadow-tops rounded">
         <div class="grid grid-cols-1 bg-indigo-800 rounded-t">
           <div class="font-light text-xl p-3">
-            <inertia-link :href="route('staff', 'manager')"> Managers ({{ data.manager.length }})</inertia-link>
+            <inertia-link :href="route('staff', 'manager')">
+              Managers <span v-if="data.manager"> ({{ data.manager.length }}) </span> <span v-else> (0) </span>
+            </inertia-link>
           </div>
         </div>
 
-        <div class="grid grid-cols-4 bg-gray-100 text-center">
+        <div v-if="data.manager" class="grid grid-cols-4 bg-gray-100 text-center">
           <div class="col-span-3 p-3">Name</div>
           <div class="p-3">Phone</div>
         </div>
@@ -28,10 +30,12 @@
       <div class="shadow-tops rounded">
         <div class="grid grid-cols-1 bg-indigo-800 rounded-t">
           <div class="font-light text-xl p-3">
-            <inertia-link :href="route('staff', 'worker')"> Workers ({{ data.worker.length }}) </inertia-link>
+            <inertia-link :href="route('staff', 'worker')">
+              Workers <span v-if="data.worker"> ({{ data.worker.length }}) </span> <span v-else> (0) </span></inertia-link
+            >
           </div>
         </div>
-        <div class="grid grid-cols-4 bg-gray-100 text-center">
+        <div v-if="data.worker" class="grid grid-cols-4 bg-gray-100 text-center">
           <div class="col-span-3 p-3">Name</div>
           <div class="p-3">Phone</div>
         </div>
@@ -59,7 +63,7 @@ export default {
   },
   data() {
     return {
-      path: '/pingcrm/public/img/',
+      path: '/public/img/',
     }
   },
 }

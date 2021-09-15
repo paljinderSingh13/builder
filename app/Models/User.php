@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
-    use SoftDeletes;
+// use SoftDeletes;
     protected $fillable = ['account_id', 'first_name', 'last_name', 'email', 'owner', 'photo_path', 'address', 'mobile', 'employee_id', 'expertise', 'emergency_contact', 'user_type', 'date_of_joining'];
 
     protected $casts = [
@@ -22,7 +22,7 @@ class User extends Authenticatable
 
     public function resolveRouteBinding($value, $field = null)
     {
-        return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
+        return $this->where($field ?? 'id', $value)->firstOrFail();
     }
 
     public function account()
